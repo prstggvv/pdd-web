@@ -1,0 +1,7 @@
+.star {
+  width: 23px;
+  height: 23px;
+  object-fit: cover;
+  object-position: center;
+  margin: 0;
+}

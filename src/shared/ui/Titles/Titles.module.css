@@ -1,0 +1,43 @@
+.titles {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 528px;
+}
+
+.uptitle {
+  font-family: var(--font-roboto-regular);
+  font-size: 20px;
+  text-align: center;
+  color: var(--bg-prime);
+  margin: 0;
+  line-height: 0.5;
+}
+
+.uptitle.dark {
+  color: var(--color-white);
+}
+
+.title {
+  font-size: 32px;
+  font-family: var(--font-cera-pro-medium);
+  text-align: center;
+}
+
+.title.dark {
+  color: var(--color-white);
+}
+
+.title.visible {
+  display: none;
+}
+
+@media screen and (max-width: 628px) {
+  .uptitle {
+    font-size: 16px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+}

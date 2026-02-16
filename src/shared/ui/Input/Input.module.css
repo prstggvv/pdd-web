@@ -1,0 +1,41 @@
+.label {
+  min-height: 38px;
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid var(--color-black);
+  max-width: 569px;
+  width: 100%;
+  padding: 0 0 16px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-black);
+  font-family: var(--font-roboto-regular);
+}
+
+.input:focus {
+  outline: none;
+}
+
+.errorInput {
+  border-color: var(--error-color);
+}
+
+.errorText {
+  color: var(--error-color);
+  display: block;
+  font-family: var(--font-sf-pro-light);
+  font-size: 12px;
+  padding: 0 15px;
+  width: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+  .label {
+    width: 100%;
+  }
+}
