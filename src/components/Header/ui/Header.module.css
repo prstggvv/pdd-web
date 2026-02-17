@@ -9,7 +9,7 @@
   align-items: center;
   max-width: 1140px;
   margin: 0 auto;
-  padding: 10px 80px 0px;
+  padding: 32px max(32px, env(safe-area-inset-right)) 32px max(32px, env(safe-area-inset-left));
 }
 
 .logo {
