@@ -1,5 +1,3 @@
-import { classNames } from "../../lib/classNames/classNames";
-
 interface IEmailIconProps {
   className?: string;
 }
