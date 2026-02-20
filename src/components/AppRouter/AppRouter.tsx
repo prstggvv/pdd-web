@@ -1,22 +1,24 @@
-import { Suspense, useEffect } from "react";
-import { Main } from "../../pages/Main";
-import { Routes, Route } from "react-router-dom";
-import { NotFoundPage } from "../../pages/NotFoundPage";
-import { Header } from "../Header";
+import { Suspense } from 'react';
+import { motion } from 'framer-motion';
+import { Routes, Route } from 'react-router-dom';
+import { Main } from '../../pages/Main';
+import { Preloader } from '../../shared/ui/Preloader/Preloader';
+import { NotFoundPage } from '../../pages/NotFoundPage';
+import { Header } from '../Header';
 
-interface IAppRouterProps {
-  onAppReady?: () => void;
-}
+const PageLoader = () => <Preloader isActive />;
 
-const MainWrapper = ({ onReady, children }: { onReady?: () => void; children: React.ReactNode }) => {
-  useEffect(() => {
-    onReady?.();
-  }, [onReady]);
+const MainWithTransition = () => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] as const }}
+  >
+    <Main />
+  </motion.div>
+);
 
-  return <>{children}</>;
-};
-
-const AppRouter = ({ onAppReady }: IAppRouterProps) => {
+const AppRouter = () => {
   return (
     <Routes>
       <Route
@@ -24,10 +26,8 @@ const AppRouter = ({ onAppReady }: IAppRouterProps) => {
         element={
           <>
             <Header />
-            <Suspense fallback={null}>
-              <MainWrapper onReady={onAppReady}>
-                <Main />
-              </MainWrapper>
+            <Suspense fallback={<PageLoader />}>
+              <MainWithTransition />
             </Suspense>
           </>
         }
