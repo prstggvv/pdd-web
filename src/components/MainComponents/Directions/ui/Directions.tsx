@@ -1,7 +1,7 @@
 import cls from './Directions.module.css';
-import { classNames } from '../../../shared/lib/classNames/classNames';
+import { classNames } from '../../../../shared/lib/classNames/classNames';
 import { directionsData } from '../model/directionsData';
-import Titles from '../../../shared/ui/Titles/Titles';
+import Titles from '../../../../shared/ui/Titles/Titles';
 
 interface IDirectionsProps {
   className?: string;

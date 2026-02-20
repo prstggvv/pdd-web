@@ -56,7 +56,6 @@
   outline-offset: 2px;
 }
 
-/* Right column: arrows (outside) + carousel + dots */
 .carouselColumn {
   display: flex;
   flex-direction: column;
@@ -228,7 +227,6 @@
   transform: scale(1.2);
 }
 
-/* Adaptive */
 @media (max-width: 1024px) {
   .container {
     grid-template-columns: 1fr;

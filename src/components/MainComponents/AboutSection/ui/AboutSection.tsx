@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import cls from './AboutSection.module.css';
-import { classNames } from '../../../shared/lib/classNames/classNames';
-import Titles from '../../../shared/ui/Titles/Titles';
+import { classNames } from '../../../../shared/lib/classNames/classNames';
+import Titles from '../../../../shared/ui/Titles/Titles';
 
 interface IAboutSectionProps {
   className?: string;

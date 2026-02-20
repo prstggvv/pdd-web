@@ -1,7 +1,7 @@
 .section {
   width: 100%;
   background-color: var(--color-bg);
-  padding: 100px 0;
+  padding: 70px 0;
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -11,7 +11,7 @@
   max-width: 1168px;
   width: 100%;
   margin: 0 auto;
-  padding: 0px clamp(20px, 4vw, 40px);
+  padding: clamp(40px, 5vw, 60px) clamp(16px, 3vw, 24px);
 }
 
 .title {
@@ -156,14 +156,9 @@
   color: var(--color-bg);
 }
 
-/* Tablet styles */
 @media screen and (max-width: 1024px) {
-  .title {
-    font-size: 42px;
-    padding: 50px 20px 35px;
-  }
-
   .container {
+    padding: 40px 0;
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -191,7 +186,6 @@
   }
 }
 
-/* Mobile landscape and small tablets */
 @media screen and (max-width: 768px) {
   .title {
     font-size: 36px;
@@ -222,7 +216,6 @@
   }
 }
 
-/* Mobile portrait */
 @media screen and (max-width: 581px) {
   .title {
     font-size: 32px;
@@ -253,7 +246,6 @@
   }
 }
 
-/* Extra small mobile */
 @media screen and (max-width: 360px) {
   .title {
     font-size: 28px;

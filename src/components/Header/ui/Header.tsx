@@ -7,8 +7,9 @@ import { NavMenu } from '../../NavMenu';
 import type { INavItem } from '../../NavMenu';
 
 const NAV_ITEMS: INavItem[] = [
+  { href: '#problems', label: 'Проблемы и решения' },
   { href: '#about', label: 'О нас' },
-  { href: '#partners', label: 'Партнерам' },
+  { href: '#partners', label: 'Наше преимущество' },
   { href: '#product', label: 'Наш продукт' },
   { href: '#projects', label: 'Наши проекты' },
   { href: '#contacts', label: 'Контакты' },

@@ -135,7 +135,7 @@
   outline-offset: 2px;
 }
 
-@media screen and (max-width: 834px) {
+@media screen and (max-width: 1083px) {
   .container {
     grid-template-columns: 1fr auto;
   }

@@ -1,11 +1,11 @@
-import { AboutSection } from "../../../components/AboutSection";
-import { ContactSection } from "../../../components/ContactSection";
-import { Directions } from "../../../components/Directions";
+import { AboutSection } from "../../../components/MainComponents/AboutSection";
+import { ContactSection } from "../../../components/MainComponents/ContactSection";
+import { Directions } from "../../../components/MainComponents/Directions";
 import { Footer } from "../../../components/Footer";
 import { Hero } from "../../../components/MainComponents/Hero";
 import { InstrComponent } from "../../../components/MainComponents/InstrComponent";
-import { ProblemsCarouselSection } from "../../../components/ProblemsCarousel";
-import { ProductSection } from "../../../components/ProductSection";
+import { ProblemsCarouselSection } from "../../../components/MainComponents/ProblemsCarousel";
+import { ProductSection } from "../../../components/MainComponents/ProductSection";
 import { classNames } from "../../../shared/lib/classNames/classNames";
 import cls from './Main.module.css';
 

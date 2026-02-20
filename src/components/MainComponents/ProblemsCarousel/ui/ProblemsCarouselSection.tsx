@@ -2,8 +2,8 @@ import { useState, useCallback, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useSwipeable } from 'react-swipeable';
 import cls from './ProblemsCarouselSection.module.css';
-import { classNames } from '../../../shared/lib/classNames/classNames';
-import Titles from '../../../shared/ui/Titles/Titles';
+import { classNames } from '../../../../shared/lib/classNames/classNames';
+import Titles from '../../../../shared/ui/Titles/Titles';
 import {
   CAROUSEL_SLIDES,
   PROBLEMS_INTRO,
@@ -67,6 +67,7 @@ export const ProblemsCarouselSection = ({ className }: IProblemsCarouselSectionP
 
   return (
     <motion.section
+      id="problems"
       className={classNames(cls.section, {}, [className ?? ''])}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}

@@ -1,6 +1,6 @@
 import cls from './ProductSection.module.css';
-import { classNames } from '../../../shared/lib/classNames/classNames';
-import Titles from '../../../shared/ui/Titles/Titles';
+import { classNames } from '../../../../shared/lib/classNames/classNames';
+import Titles from '../../../../shared/ui/Titles/Titles';
 import { PRODUCT_CARDS, PRODUCT_INTRO } from '../model/productSectionData';
 
 interface IProductSectionProps {

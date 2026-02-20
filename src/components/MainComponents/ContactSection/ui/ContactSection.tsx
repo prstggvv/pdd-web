@@ -1,6 +1,6 @@
 import cls from './ContactSection.module.css';
-import { classNames } from '../../../shared/lib/classNames/classNames';
-import Titles from '../../../shared/ui/Titles/Titles';
+import { classNames } from '../../../../shared/lib/classNames/classNames';
+import Titles from '../../../../shared/ui/Titles/Titles';
 
 interface IContactSectionProps {
   className?: string;

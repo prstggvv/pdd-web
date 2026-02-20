@@ -1,4 +1,5 @@
-import { useEffect, useRef, useCallback, useState } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import cls from './NavMenu.module.css';
 import { classNames } from '../../../shared/lib/classNames/classNames';
 
@@ -16,12 +17,28 @@ interface INavMenuProps {
 
 const CLOSE_ANIMATION_MS = 350;
 
+const overlayTransition = { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] as const };
+const panelTransition = { duration: 0.4, delay: 0.08, ease: [0.25, 0.46, 0.45, 0.94] as const };
+const panelExitTransition = { duration: 0.25 };
+
+const navVariants = {
+  visible: {
+    transition: { staggerChildren: 0.08, delayChildren: 0.12 },
+  },
+  exit: {
+    transition: { staggerChildren: 0, delayChildren: 0 },
+  },
+};
+
+const linkVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -12, transition: { duration: 0.15 } },
+};
+
 export const NavMenu = ({ isOpen, onClose, items, className }: INavMenuProps) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isClosing, setIsClosing] = useState(false);
-  const [isOpening, setIsOpening] = useState(false);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
-  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const previouslyFocusedRef = useRef<HTMLElement | null>(null);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
@@ -62,100 +79,99 @@ export const NavMenu = ({ isOpen, onClose, items, className }: INavMenuProps) =>
 
   useEffect(() => {
     if (isOpen) {
-      setIsClosing(false);
-      setIsVisible(true);
-      if (closeTimeoutRef.current) {
-        clearTimeout(closeTimeoutRef.current);
-        closeTimeoutRef.current = null;
-      }
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          setIsOpening(true);
-        });
-      });
-    } else if (isVisible) {
-      setIsOpening(false);
-      setIsClosing(true);
-      closeTimeoutRef.current = setTimeout(() => {
-        setIsVisible(false);
-        setIsClosing(false);
-        closeTimeoutRef.current = null;
-      }, CLOSE_ANIMATION_MS);
+      previouslyFocusedRef.current = document.activeElement as HTMLElement | null;
     }
-    return () => {
-      if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
-    };
-  }, [isOpen, isVisible]);
+  }, [isOpen]);
 
-  useEffect(() => {
-    if (!isOpen || !isVisible || isClosing) return;
-    const t = requestAnimationFrame(() => {
-      firstLinkRef.current?.focus({ preventScroll: true });
-    });
-    return () => cancelAnimationFrame(t);
-  }, [isOpen, isVisible, isClosing]);
-
-  useEffect(() => {
-    if (!isVisible || isClosing) return;
-    const previouslyFocused = document.activeElement as HTMLElement | null;
-    return () => {
-      previouslyFocused?.focus();
-    };
-  }, [isVisible, isClosing]);
-
-  if (!isVisible) return null;
+  const handleExitComplete = useCallback(() => {
+    previouslyFocusedRef.current?.focus();
+  }, []);
 
   return (
-    <div
-      className={classNames(cls.overlay, { [cls.closing]: isClosing, [cls.opening]: isOpening }, [className ?? ''])}
-      role="dialog"
-      aria-modal="true"
-      aria-label="Навигация"
-      onKeyDown={handleKeyDown}
-    >
-      <button
-        type="button"
-        className={classNames(cls.backdrop, {}, [])}
-        onClick={onClose}
-        aria-label="Закрыть меню"
-        tabIndex={-1}
-      />
-      <div id="mobile-nav" className={classNames(cls.panel, { [cls.closing]: isClosing, [cls.opening]: isOpening }, [])}>
-        <nav className={classNames(cls.nav, {}, [])}>
-          {items.map((item, index) => (
-            <a
-              key={item.href}
-              ref={index === 0 ? firstLinkRef : undefined}
-              href={item.href}
-              className={classNames(cls.link, {}, [])}
-              style={{ animationDelay: isClosing ? '0ms' : `${120 + index * 80}ms` }}
-              onClick={handleLinkClick}
-              tabIndex={0}
-              aria-label={item.label}
+    <AnimatePresence onExitComplete={handleExitComplete}>
+      {isOpen && (
+        <motion.div
+          className={classNames(cls.overlay, {}, [className ?? ''])}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Навигация"
+          onKeyDown={handleKeyDown}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={overlayTransition}
+          onAnimationComplete={() => {
+            if (isOpen) firstLinkRef.current?.focus({ preventScroll: true });
+          }}
+        >
+          <motion.button
+            type="button"
+            className={classNames(cls.backdrop, {}, [])}
+            onClick={onClose}
+            aria-label="Закрыть меню"
+            tabIndex={-1}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ ...overlayTransition, delay: 0.05 }}
+          />
+          <motion.div
+            id="mobile-nav"
+            className={classNames(cls.panel, {}, [])}
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.98, transition: panelExitTransition }}
+            transition={panelTransition}
+          >
+            <motion.nav
+              className={classNames(cls.nav, {}, [])}
+              variants={navVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
             >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-        <div className={classNames(cls.contactBlock, {}, [])}>
-          <a
-            href="tel:+79782176422"
-            className={classNames(cls.contactLink, {}, [])}
-            onClick={onClose}
-            aria-label="Позвонить"
-          >
-            +7 (978) 217 64 22
-          </a>
-          <a
-            href="mailto:trafsaf@yandex.ru"
-            className={classNames(cls.contactLink, {}, [])}
-            onClick={onClose}
-            aria-label="Написать на почту"
-          >
-            trafsaf@yandex.ru
-          </a>
-        </div>
-      </div>
-    </div>
+              {items.map((item, index) => (
+                <motion.a
+                  key={item.href}
+                  ref={index === 0 ? firstLinkRef : undefined}
+                  href={item.href}
+                  className={classNames(cls.link, {}, [])}
+                  variants={linkVariants}
+                  onClick={handleLinkClick}
+                  tabIndex={0}
+                  aria-label={item.label}
+                >
+                  {item.label}
+                </motion.a>
+              ))}
+            </motion.nav>
+            <motion.div
+              className={classNames(cls.contactBlock, {}, [])}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8, transition: { duration: 0.15 } }}
+              transition={{ duration: 0.35, delay: 0.4 }}
+            >
+              <a
+                href="tel:+79782176422"
+                className={classNames(cls.contactLink, {}, [])}
+                onClick={onClose}
+                aria-label="Позвонить"
+              >
+                +7 (978) 217 64 22
+              </a>
+              <a
+                href="mailto:trafsaf@yandex.ru"
+                className={classNames(cls.contactLink, {}, [])}
+                onClick={onClose}
+                aria-label="Написать на почту"
+              >
+                trafsaf@yandex.ru
+              </a>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
