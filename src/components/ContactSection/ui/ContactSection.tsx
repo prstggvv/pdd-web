@@ -11,7 +11,7 @@ const YANDEX_MAP_SRC =
 
 export const ContactSection = ({ className }: IContactSectionProps) => {
   return (
-    <section className={classNames(cls.section, {}, [className ?? ''])}>
+    <section id="contacts" className={classNames(cls.section, {}, [className ?? ''])}>
       <div className={classNames(cls.container, {}, [])}>
         <div className={classNames(cls.info, {}, [])}>
           <Titles
@@ -74,7 +74,7 @@ export const ContactSection = ({ className }: IContactSectionProps) => {
             <iframe
               src={YANDEX_MAP_SRC}
               width="560"
-              height="400"
+              height="711"
               frameBorder="0"
               allowFullScreen
               title="Карта: проспект Победы, 109А, Симферополь"

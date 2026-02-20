@@ -10,7 +10,7 @@ interface IInstrComponentProps {
 
 export const InstrComponent = ({ className }: IInstrComponentProps) => {
   return (
-    <section className={classNames(cls.section, {}, [className ?? ''])}>
+    <section id="partners" className={classNames(cls.section, {}, [className ?? ''])}>
       <div className={classNames(cls.container, {}, [])}>
         <div className={classNames(cls.infoBlock, {}, [])}>
           <Titles

@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import cls from './Hero.module.css';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
 
@@ -7,19 +8,34 @@ interface IHeroProps {
 
 export const Hero = ({ className }: IHeroProps) => {
   return (
-    <section className={classNames(cls.section, {}, [className ?? ''])}>
+    <motion.section
+      className={classNames(cls.section, {}, [className ?? ''])}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+    >
       <div className={classNames(cls.container, {}, [])}>
         <div
           className={classNames(cls.backImage, {}, [])}></div>
-        <div className={classNames(cls.block, {}, [])}>
+        <motion.div
+          className={classNames(cls.block, {}, [])}
+          initial={{ opacity: 0, y: 32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
           <h1
             className={classNames(cls.titles, {}, [])}
           >
-            <span className={classNames(cls.span, {}, [])}>ЗНАКИ</span>
-            <span className={classNames(cls.span, {}, [])}>СВЕТОФОРЫ</span>
-            <span className={classNames(cls.span, {}, [])}>РАЗМЕТКА</span>
+            <motion.span className={classNames(cls.span, {}, [])} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}>ЗНАКИ</motion.span>
+            <motion.span className={classNames(cls.span, {}, [])} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }}>СВЕТОФОРЫ</motion.span>
+            <motion.span className={classNames(cls.span, {}, [])} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.6 }}>РАЗМЕТКА</motion.span>
           </h1>
-          <div className={classNames(cls.content, {}, [])}>
+          <motion.div
+            className={classNames(cls.content, {}, [])}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
             <p className={classNames(cls.text, {}, [])}>
               Установка знаков, светофоров и нанесение разметки.
               Проектирование и монтаж по нормам ПДД и ГОСТ.
@@ -34,9 +50,9 @@ export const Hero = ({ className }: IHeroProps) => {
                 <p className={classNames(cls.subtitle, {}, [])}>Разметки нанесено</p>
               </li>
             </ul>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   )
 };

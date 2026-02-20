@@ -1,6 +1,7 @@
 import cls from './ProductSection.module.css';
 import { classNames } from '../../../shared/lib/classNames/classNames';
-import { productSectionListData } from '../model/productSectionData';
+import Titles from '../../../shared/ui/Titles/Titles';
+import { PRODUCT_CARDS, PRODUCT_INTRO } from '../model/productSectionData';
 
 interface IProductSectionProps {
   className?: string;
@@ -9,45 +10,58 @@ interface IProductSectionProps {
 const handleKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
   if (e.key === 'Enter' || e.key === ' ') {
     e.preventDefault();
-    const target = e.currentTarget as HTMLAnchorElement;
-    target.click();
+    (e.currentTarget as HTMLAnchorElement).click();
   }
 };
 
 export const ProductSection = ({ className }: IProductSectionProps) => {
   return (
-    <section className={classNames(cls.section, {}, [className ?? ''])}>
+    <section
+      id="product"
+      className={classNames(cls.section, {}, [className ?? ''])}
+    >
       <div className={classNames(cls.container, {}, [])}>
-        <div className={classNames(cls.content, {}, [])}>
-          <div className={classNames(cls.titles, {}, [])}>
-            <h2 className={classNames(cls.subheading, {}, [])}>ПОЧЕМУ ВЫБИРАЮТ НАС</h2>
-            <h3 className={classNames(cls.heading, {}, [])}>Наш продукт</h3>
-          </div>
-          <div className={classNames(cls.separator, {}, [])}></div>
+        <div className={classNames(cls.intro, {}, [])}>
+          <Titles
+            uptitle="Чем мы занимаемся"
+            title="Наш продукт"
+            dark={false}
+            className={classNames(cls.titles, {}, [])}
+          />
+          <p className={classNames(cls.introText, {}, [])}>{PRODUCT_INTRO}</p>
+          <a
+            href="#contacts"
+            className={classNames(cls.ctaLink, {}, [])}
+            tabIndex={0}
+            aria-label="Оставить заявку"
+            onKeyDown={handleKeyDown}
+          >
+            <span className={classNames(cls.ctaText, {}, [])}>Оставить заявку</span>
+            <span className={classNames(cls.ctaArrow, {}, [])}>→</span>
+          </a>
+        </div>
 
-          <ul className={classNames(cls.list, {}, [])}>
-            {productSectionListData.map((item, index) => (
-              <li key={index} className={classNames(cls.listItem, {}, [])}>
-                <span className={classNames(cls.listText, {}, [])}>{item}</span>
-              </li>
-            ))}
-          </ul>
-
-          <div className={classNames(cls.footer, {}, [])}>
-            <p className={classNames(cls.footerText, {}, [])}>
-              Выполним комплекс работ от разработки и согласования проекта ОДД до реализации проектных решений
-            </p>
-            <a
-              href="#"
-              className={classNames(cls.ctaLink, {}, [])}
+        <div className={classNames(cls.cardsGrid, {}, [])}>
+          {PRODUCT_CARDS.map((card) => (
+            <article
+              key={card.id}
+              className={classNames(cls.card, {}, [])}
               tabIndex={0}
-              aria-label="Оставить заявку"
-              onKeyDown={handleKeyDown}
+              aria-label={card.title}
             >
-              <span className={classNames(cls.ctaText, {}, [])}>Оставить заявку</span>
-              <span className={classNames(cls.ctaArrow, {}, [])}>→</span>
-            </a>
-          </div>
+              <div className={classNames(cls.cardImageWrap, {}, [])}>
+                <img
+                  src={card.imageUrl}
+                  alt=""
+                  className={classNames(cls.cardImage, {}, [])}
+                />
+                <div className={classNames(cls.cardOverlay, {}, [])} aria-hidden />
+              </div>
+              <div className={classNames(cls.cardText, {}, [])}>
+                <h3 className={classNames(cls.cardTitle, {}, [])}>{card.title}</h3>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

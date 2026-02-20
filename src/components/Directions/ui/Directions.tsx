@@ -9,7 +9,7 @@ interface IDirectionsProps {
 
 export const Directions = ({ className }: IDirectionsProps) => {
   return (
-    <section className={classNames(cls.section, {}, [className ?? ''])}>
+    <section id="projects" className={classNames(cls.section, {}, [className ?? ''])}>
       <Titles
         uptitle='Наши проекты'
         title='То что мы реализовали'
