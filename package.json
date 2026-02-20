@@ -2,7 +2,7 @@
   "name": "igor",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://prstggvv.github.io/spa-salon",
+  "homepage": "https://prstggvv.github.io/pdd-web",
   "type": "module",
   "scripts": {
     "dev": "vite",
