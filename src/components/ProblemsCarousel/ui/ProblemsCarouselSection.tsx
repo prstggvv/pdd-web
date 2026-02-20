@@ -100,7 +100,7 @@ export const ProblemsCarouselSection = ({ className }: IProblemsCarouselSectionP
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
           >
-            Оставить заявку
+            Подробнее
           </motion.a>
         </div>
 

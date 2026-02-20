@@ -14,19 +14,26 @@ const NAV_ITEMS: INavItem[] = [
   { href: '#contacts', label: 'Контакты' },
 ];
 
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
+
 interface IHeaderData {
   className?: string;
 }
 
-const SCROLL_THRESHOLD_PERCENT = 0.2;
-
 export const Header = ({ className }: IHeaderData) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isFixed, setIsFixed] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
-  const handleOpenBurger = useCallback(() => {
+  const handleBurgerClick = useCallback(() => {
     setMenuOpen((prev) => !prev);
+  }, []);
+
+  const handleNavLinkClick = useCallback(() => {
+    setMenuOpen(false);
   }, []);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLButtonElement>) => {
@@ -34,10 +41,6 @@ export const Header = ({ className }: IHeaderData) => {
       e.preventDefault();
       setMenuOpen((prev) => !prev);
     }
-  }, []);
-
-  const handleCloseMenu = useCallback(() => {
-    setMenuOpen(false);
   }, []);
 
   const handleSmoothScroll = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -57,39 +60,27 @@ export const Header = ({ className }: IHeaderData) => {
         behavior: 'smooth',
       });
     }
+    setMenuOpen(false);
   }, []);
 
   useEffect(() => {
-    const getScrollThreshold = () => {
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      return maxScroll * SCROLL_THRESHOLD_PERCENT;
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
     };
-
-    const updateFixed = () => {
-      const threshold = getScrollThreshold();
-      setIsFixed(window.scrollY >= threshold);
-    };
-
-    updateFixed();
-    window.addEventListener('scroll', updateFixed, { passive: true });
-    return () => window.removeEventListener('scroll', updateFixed);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <>
       <motion.header
         ref={headerRef}
-        className={classNames(cls.header, { [cls.fixed]: isFixed }, [className ?? ''])}
-        initial={false}
-        animate={{
-          y: isFixed ? 0 : undefined,
-          boxShadow: isFixed ? '0 2px 24px rgba(0,0,0,0.25)' : 'none',
-        }}
-        transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
-        style={{
-          ...(isFixed ? { position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, backgroundColor: 'var(--color-bg)' } : {}),
-          ...(menuOpen ? { zIndex: 1001, ...(!isFixed ? { position: 'relative' } : {}) } : {}),
-        }}
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+        className={classNames(cls.header, { [cls.scrolled]: scrolled }, [className ?? ''])}
+        style={menuOpen ? { zIndex: 1001 } : undefined}
       >
         <div className={classNames(cls.container, {}, [])}>
           <a
@@ -97,7 +88,7 @@ export const Header = ({ className }: IHeaderData) => {
             className={classNames(cls.logo, {}, [])}
             aria-label="КОДД — на главную"
           >
-            <span className={classNames(cls.icon, {}, [])} aria-hidden="true"></span>
+            <span className={classNames(cls.icon, {}, [])} aria-hidden="true" />
             <span className={classNames(cls.logoText, {}, [])}>КОДД</span>
           </a>
           <nav className={classNames(cls.nav, {}, [])}>
@@ -123,14 +114,14 @@ export const Header = ({ className }: IHeaderData) => {
           <BurgerButton
             className={classNames(cls.button, {}, [])}
             menuOpen={menuOpen}
-            handleBurgerClick={handleOpenBurger}
+            handleBurgerClick={handleBurgerClick}
             handleKeyDown={handleKeyDown}
           />
         </div>
       </motion.header>
       <NavMenu
         isOpen={menuOpen}
-        onClose={handleCloseMenu}
+        onClose={handleNavLinkClick}
         items={NAV_ITEMS}
       />
     </>
