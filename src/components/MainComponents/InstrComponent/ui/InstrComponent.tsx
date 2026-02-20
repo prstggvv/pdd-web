@@ -2,6 +2,7 @@ import cls from './InstrComponent.module.css';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
 import { instrComponentData } from '../model/instrComponentData';
 import Button from '../../../../shared/ui/Button/Button';
+import Titles from '../../../../shared/ui/Titles/Titles';
 
 interface IInstrComponentProps {
   className?: string;
@@ -12,7 +13,11 @@ export const InstrComponent = ({ className }: IInstrComponentProps) => {
     <section className={classNames(cls.section, {}, [className ?? ''])}>
       <div className={classNames(cls.container, {}, [])}>
         <div className={classNames(cls.infoBlock, {}, [])}>
-          <h2 className={classNames(cls.title, {}, [])}>Наше преимущество</h2>
+          <Titles
+            uptitle='Наше преимущество'
+            title='Почему стоит выбирать нас'
+            dark={true}
+          />
           <ul className={classNames(cls.list, {}, [])}>
             {instrComponentData.map((c, i) => {
               return (

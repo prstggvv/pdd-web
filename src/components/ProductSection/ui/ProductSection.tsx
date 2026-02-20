@@ -19,10 +19,12 @@ export const ProductSection = ({ className }: IProductSectionProps) => {
     <section className={classNames(cls.section, {}, [className ?? ''])}>
       <div className={classNames(cls.container, {}, [])}>
         <div className={classNames(cls.content, {}, [])}>
-          <h2 className={classNames(cls.subheading, {}, [])}>ПОЧЕМУ ВЫБИРАЮТ НАС</h2>
-          <h3 className={classNames(cls.heading, {}, [])}>Наш продукт</h3>
+          <div className={classNames(cls.titles, {}, [])}>
+            <h2 className={classNames(cls.subheading, {}, [])}>ПОЧЕМУ ВЫБИРАЮТ НАС</h2>
+            <h3 className={classNames(cls.heading, {}, [])}>Наш продукт</h3>
+          </div>
           <div className={classNames(cls.separator, {}, [])}></div>
-          
+
           <ul className={classNames(cls.list, {}, [])}>
             {productSectionListData.map((item, index) => (
               <li key={index} className={classNames(cls.listItem, {}, [])}>

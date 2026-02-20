@@ -1,4 +1,6 @@
+import { ContactSection } from "../../../components/ContactSection";
 import { Directions } from "../../../components/Directions";
+import { Footer } from "../../../components/Footer";
 import { Hero } from "../../../components/MainComponents/Hero";
 import { InstrComponent } from "../../../components/MainComponents/InstrComponent";
 import { ProductSection } from "../../../components/ProductSection";
@@ -16,6 +18,8 @@ const Main = ({ className }: MainProps) => {
       <InstrComponent />
       <ProductSection />
       <Directions />
+      <ContactSection />
+      <Footer />
     </div>
   )
 };

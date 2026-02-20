@@ -1,7 +1,17 @@
 .section {
   width: 100%;
   background-color: var(--color-bg);
-  padding: 0;
+  padding: 100px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.titles {
+  max-width: 1168px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0px clamp(20px, 4vw, 40px);
 }
 
 .title {
@@ -155,6 +165,10 @@
 
   .container {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .titles {
+    padding: 0 20px;
   }
 
   .panel {

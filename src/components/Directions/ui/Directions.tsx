@@ -1,6 +1,7 @@
 import cls from './Directions.module.css';
 import { classNames } from '../../../shared/lib/classNames/classNames';
 import { directionsData } from '../model/directionsData';
+import Titles from '../../../shared/ui/Titles/Titles';
 
 interface IDirectionsProps {
   className?: string;
@@ -9,7 +10,12 @@ interface IDirectionsProps {
 export const Directions = ({ className }: IDirectionsProps) => {
   return (
     <section className={classNames(cls.section, {}, [className ?? ''])}>
-      <h2 className={classNames(cls.title, {}, [])}>Наши проекты</h2>
+      <Titles
+        uptitle='Наши проекты'
+        title='То что мы реализовали'
+        dark={true}
+        className={classNames(cls.titles, {}, [])}
+      />
       <div className={classNames(cls.container, {}, [])}>
         {directionsData.map((direction) => (
           <div
