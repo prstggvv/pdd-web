@@ -1,3 +1,8 @@
+import LighterImage from '../../../../shared/assets/images/products/lighter.jpg';
+import PlasticaImage from '../../../../shared/assets/images/products/plastica.jpg';
+import SignsImage from '../../../../shared/assets/images/products/signs.jpg';
+import MarkingsImage from '../../../../shared/assets/images/products/markings.jpg';
+
 interface IDirectionsDataProps {
   id: string;
   title: string;
@@ -11,28 +16,28 @@ export const directionsData: IDirectionsDataProps[] = [
     id: 'boxing',
     title: 'г. Симферополь',
     subtitle: 'Разработка постоянной схемы Устройство примыкания парковки к автомобильной дороге общего пользования местного значения',
-    defaultImage: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=800&fit=crop',
-    hoverImage: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=800&fit=crop'
+    defaultImage: SignsImage,
+    hoverImage: PlasticaImage,
   },
   {
     id: 'kickboxing',
     title: 'г. Симферополь',
     subtitle: 'Разработка постоянной схемы Устройство примыкания парковки к автомобильной дороге общего пользования местного значения',
-    defaultImage: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=800&fit=crop',
-    hoverImage: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=800&fit=crop'
+    defaultImage: PlasticaImage,
+    hoverImage: SignsImage,
   },
   {
     id: 'mma',
     title: 'г. Симферополь',
     subtitle: 'Разработка постоянной схемы Устройство примыкания парковки к автомобильной дороге общего пользования местного значения',
-    defaultImage: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=800&fit=crop',
-    hoverImage: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=800&fit=crop'
+    defaultImage: MarkingsImage,
+    hoverImage: LighterImage,
   },
   {
     id: 'bjj',
     title: 'г. Симферополь',
     subtitle: 'Разработка постоянной схемы Устройство примыкания парковки к автомобильной дороге общего пользования местного значения',
-    defaultImage: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=800&fit=crop',
-    hoverImage: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=800&fit=crop'
+    defaultImage: LighterImage,
+    hoverImage: MarkingsImage,
   }
 ];
