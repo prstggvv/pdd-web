@@ -1,6 +1,3 @@
-import LighterImage from '../../../../shared/assets/images/products/lighter.jpg';
-import MarkingsImage from '../../../../shared/assets/images/products/markings.jpg';
-
 import SimferopolImage from '../../../../shared/assets/images/projects/simferopol.webp';
 import SimferopolHoverImage from '../../../../shared/assets/images/projects/simferopolwork.png';
 import YaltaImage from '../../../../shared/assets/images/projects/yalta.webp';
