@@ -3,7 +3,6 @@ import { classNames } from '../../../../shared/lib/classNames/classNames';
 import { scrollToSection } from '../../../../shared/lib/scrollToSection/scrollToSection';
 import { instrComponentData } from '../model/instrComponentData';
 import Titles from '../../../../shared/ui/Titles/Titles';
-import FirstImage from '../../../../shared/assets/images/advantages/imageeee.jpg';
 
 interface IInstrComponentProps {
   className?: string;
@@ -15,10 +14,14 @@ export const InstrComponent = ({ className }: IInstrComponentProps) => {
       <div className={classNames(cls.container, {}, [])}>
         <div className={classNames(cls.infoBlock, {}, [])}>
           <Titles
-            uptitle='Наше преимущество'
-            title='Почему стоит выбирать нас'
+            uptitle='Наши преимущества'
+            title='Как мы работаем'
             dark={true}
           />
+          <p className={classNames(cls.lead, {}, [])}>
+            Прозрачный процесс из 5 шагов: от анализа до сопровождения. Вы всегда понимаете, что
+            происходит на каждом этапе и кто отвечает за результат.
+          </p>
           <ul className={classNames(cls.list, {}, [])}>
             {instrComponentData.map((c, i) => {
               return (
@@ -26,7 +29,7 @@ export const InstrComponent = ({ className }: IInstrComponentProps) => {
                   className={classNames(cls.item, {}, [])}
                   key={i}
                 >
-                  <p className={classNames(cls.number, {}, [])}>{c.number}</p>
+                  <p className={classNames(cls.number, {}, [])}>Шаг {c.number}</p>
                   <h3 className={classNames(cls.heading, {}, [])}>{c.title}</h3>
                   <p className={classNames(cls.subheading, {}, [])}>{c.subtitle}</p>
                 </li>
@@ -43,13 +46,6 @@ export const InstrComponent = ({ className }: IInstrComponentProps) => {
           >
             Подробнее
           </a>
-        </div>
-        <div className={classNames(cls.imageWrapper, {}, [])}>
-          <img
-            alt='Картинка'
-            src={FirstImage}
-            className={classNames(cls.image, {}, [])}
-          />
         </div>
       </div>
     </section>

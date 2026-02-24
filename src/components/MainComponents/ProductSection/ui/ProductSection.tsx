@@ -47,10 +47,10 @@ export const ProductSection = ({ className }: IProductSectionProps) => {
         </div>
 
         <div className={classNames(cls.cardsGrid, {}, [])}>
-          {PRODUCT_CARDS.map((card) => (
+          {PRODUCT_CARDS.map((card, index) => (
             <article
               key={card.id}
-              className={classNames(cls.card, {}, [])}
+              className={classNames(cls.card, { [cls.cardWide]: index === 0 }, [])}
               tabIndex={0}
               aria-label={card.title}
             >
@@ -64,6 +64,7 @@ export const ProductSection = ({ className }: IProductSectionProps) => {
               </div>
               <div className={classNames(cls.cardText, {}, [])}>
                 <h3 className={classNames(cls.cardTitle, {}, [])}>{card.title}</h3>
+                <p className={classNames(cls.cardDescription, {}, [])}>{card.description}</p>
               </div>
             </article>
           ))}

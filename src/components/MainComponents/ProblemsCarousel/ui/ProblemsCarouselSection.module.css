@@ -21,14 +21,23 @@
 .problemsColumn {
   display: flex;
   flex-direction: column;
-  gap: clamp(20px, 2.5vw, 28px);
+  gap: clamp(38px, 2.5vw, 28px);
   max-width: 520px;
 }
 
-.problemsIntro {
+.problemsList {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.2vw, 12px);
+  list-style: disc;
+}
+
+.problemItem {
   font-family: var(--font-roboto-regular);
   font-size: clamp(15px, 1.8vw, 17px);
-  line-height: 1.7;
+  line-height: 1.65;
   color: var(--color-text-muted);
 }
 

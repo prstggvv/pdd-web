@@ -1,7 +1,8 @@
 import LighterImage from '../../../../shared/assets/images/products/lighter.jpg';
-import PlasticaImage from '../../../../shared/assets/images/products/plastica.jpg';
 import SignsImage from '../../../../shared/assets/images/products/signs.jpg';
 import MarkingsImage from '../../../../shared/assets/images/products/markings.jpg';
+import BumpsImage from '../../../../shared/assets/images/carousel/first.jpg';
+import FencesImage from '../../../../shared/assets/images/carousel/second.jpg';
 
 export interface IProductCard {
   id: string;
@@ -17,25 +18,31 @@ export const PRODUCT_CARDS: IProductCard[] = [
   {
     id: 'signs',
     title: 'Знаки',
-    description: 'Изготовление и установка дорожных знаков по ГОСТ',
+    description: 'Дорожные знаки по ГОСТ 52289-2019 и 32945-2014.',
     imageUrl: SignsImage,
   },
   {
     id: 'lights',
     title: 'Светофоры',
-    description: 'Монтаж и обслуживание светофорных объектов',
+    description: 'Светофоры транспортные и пешеходные. АСУДД, светофоры Т7.',
     imageUrl: LighterImage,
   },
   {
     id: 'marking',
     title: 'Разметка',
-    description: 'Нанесение дорожной разметки по нормам ПДД',
+    description: 'Дорожная разметка краской, термопластиком, холодным пластиком по ГОСТ 51256-2018.',
     imageUrl: MarkingsImage,
   },
   {
-    id: 'plastic',
-    title: 'Пластик',
-    description: 'Пластиковые ограждения, столбики, конусы',
-    imageUrl: PlasticaImage,
+    id: 'speed-bumps',
+    title: 'Искуственные неровности',
+    description: 'Устройства лежачих полицейских и искуственных неровностей по нормативам.',
+    imageUrl: BumpsImage,
+  },
+  {
+    id: 'fences',
+    title: 'Ограждения и средства организации движения',
+    description: 'От ограждений металлоконструкции до обустройства дорог.',
+    imageUrl: FencesImage,
   },
 ];

@@ -7,7 +7,7 @@ import Titles from '../../../../shared/ui/Titles/Titles';
 import { scrollToSection } from '../../../../shared/lib/scrollToSection/scrollToSection';
 import {
   CAROUSEL_SLIDES,
-  PROBLEMS_INTRO,
+  PROBLEMS_LIST,
   type ICarouselSlide,
 } from '../model/problemsCarouselData';
 
@@ -83,15 +83,19 @@ export const ProblemsCarouselSection = ({ className }: IProblemsCarouselSectionP
             dark={true}
             className={classNames(cls.titles, {}, [])}
           />
-          <motion.p
-            className={classNames(cls.problemsIntro, {}, [])}
+          <motion.ul
+            className={classNames(cls.problemsList, {}, [])}
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.4, delay: 0.1 }}
           >
-            {PROBLEMS_INTRO}
-          </motion.p>
+            {PROBLEMS_LIST.map((problem) => (
+              <li key={problem} className={classNames(cls.problemItem, {}, [])}>
+                {problem}
+              </li>
+            ))}
+          </motion.ul>
           <motion.a
             href="#product"
             className={classNames(cls.cta, {}, [])}

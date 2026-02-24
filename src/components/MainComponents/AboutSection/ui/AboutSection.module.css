@@ -1,7 +1,7 @@
 .section {
   width: 100%;
   background-color: var(--color-text);
-  padding: clamp(60px, 8vw, 100px) clamp(20px, 4vw, 40px);
+  padding: clamp(30px, 4vw, 50px) clamp(16px, 3vw, 32px);
 }
 
 .container {

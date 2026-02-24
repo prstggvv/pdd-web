@@ -38,7 +38,7 @@ export const AboutSection = ({ className }: IAboutSectionProps) => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Мы специализируемся на организации дорожного движения: проектирование ОДД, установка знаков, светофоров и нанесение разметки по нормам ПДД и ГОСТ.
+            ООО «КОДД» — эксперты в безопасности дорожного движения и транспортной инфраструктуре. Мы обеспечиваем безопасность на дорогах, выполняя полный комплекс работ по обустройству объектов транспортной инфраструктуры
           </motion.p>
           <motion.ul
             className={classNames(cls.features, {}, [])}
@@ -49,15 +49,21 @@ export const AboutSection = ({ className }: IAboutSectionProps) => {
           >
             <motion.li className={classNames(cls.feature, {}, [])} variants={{ hidden: { opacity: 0, x: -16 }, visible: { opacity: 1, x: 0 } }}>
               <span className={classNames(cls.featureNum, {}, [])}>01</span>
-              <p className={classNames(cls.featureText, {}, [])}>Опыт работы с объектами любой сложности</p>
+              <p className={classNames(cls.featureText, {}, [])}>
+                Производим и создаем монтаж технических средств организации дорожного движения (ТСОДД): дорожные знаки, рамные и Г-образные опоры, барьерное ограждение, шумозащитные экраны.
+              </p>
             </motion.li>
             <motion.li className={classNames(cls.feature, {}, [])} variants={{ hidden: { opacity: 0, x: -16 }, visible: { opacity: 1, x: 0 } }}>
               <span className={classNames(cls.featureNum, {}, [])}>02</span>
-              <p className={classNames(cls.featureText, {}, [])}>Полный цикл: от проекта до сдачи в эксплуатацию</p>
+              <p className={classNames(cls.featureText, {}, [])}>
+                Наносим горизонтальные и вертикальные линии дорожной разметки (термопластик, краска), включая временные схемы.
+              </p>
             </motion.li>
             <motion.li className={classNames(cls.feature, {}, [])} variants={{ hidden: { opacity: 0, x: -16 }, visible: { opacity: 1, x: 0 } }}>
               <span className={classNames(cls.featureNum, {}, [])}>03</span>
-              <p className={classNames(cls.featureText, {}, [])}>Соблюдение сроков и гарантия на работы</p>
+              <p className={classNames(cls.featureText, {}, [])}>
+                Установавлиавем и делаем монтаж наружного освещения.
+              </p>
             </motion.li>
           </motion.ul>
         </motion.div>

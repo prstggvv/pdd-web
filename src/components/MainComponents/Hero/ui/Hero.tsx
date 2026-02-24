@@ -27,9 +27,9 @@ export const Hero = ({ className }: IHeroProps) => {
           <h1
             className={classNames(cls.titles, {}, [])}
           >
-            <motion.span className={classNames(cls.span, {}, [])} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}>ЗНАКИ</motion.span>
-            <motion.span className={classNames(cls.span, {}, [])} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }}>СВЕТОФОРЫ</motion.span>
-            <motion.span className={classNames(cls.span, {}, [])} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.6 }}>РАЗМЕТКА</motion.span>
+            <motion.span className={classNames(cls.span, {}, [])} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}>Обустройство дорожной инфраструктуры</motion.span>
+            <motion.span className={classNames(cls.span, {}, [])} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }}>под ключ - </motion.span>
+            <motion.span className={classNames(cls.span, {}, [])} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.6 }}>без срывов и переделок</motion.span>
           </h1>
           <motion.div
             className={classNames(cls.content, {}, [])}
@@ -38,17 +38,16 @@ export const Hero = ({ className }: IHeroProps) => {
             transition={{ duration: 0.6, delay: 0.8 }}
           >
             <p className={classNames(cls.text, {}, [])}>
-              Установка знаков, светофоров и нанесение разметки.
-              Проектирование и монтаж по нормам ПДД и ГОСТ.
+              Работаем в реальных условиях трафика. Сроки, безопасность и качество под полным контролем.
             </p>
             <ul className={classNames(cls.cards, {}, [])}>
               <li className={classNames(cls.card, {}, [])}>
-                <h2 className={classNames(cls.heading, {}, [])}>850+</h2>
-                <p className={classNames(cls.subtitle, {}, [])}>Светофоров установлено</p>
+                <h2 className={classNames(cls.heading, {}, [])}>8000</h2>
+                <p className={classNames(cls.subtitle, {}, [])}>Установлено знаков по Крыму</p>
               </li>
               <li className={classNames(cls.card, {}, [])}>
-                <h2 className={classNames(cls.heading, {}, [])}>120 км</h2>
-                <p className={classNames(cls.subtitle, {}, [])}>Разметки нанесено</p>
+                <h2 className={classNames(cls.heading, {}, [])}>+500 тн.</h2>
+                <p className={classNames(cls.subtitle, {}, [])}>Смонтировано металлоконструкции</p>
               </li>
             </ul>
           </motion.div>
