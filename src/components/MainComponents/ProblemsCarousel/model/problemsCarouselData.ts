@@ -1,6 +1,8 @@
-import LighterImage from '../../../../shared/assets/images/products/lighter.jpg';
-import SignsImage from '../../../../shared/assets/images/products/signs.jpg';
-import MarkingsImage from '../../../../shared/assets/images/products/markings.jpg';
+import CarouselImg1 from '../../../../shared/assets/images/carousel/12123123123123.jpg';
+import CarouselImg2 from '../../../../shared/assets/images/carousel/123213123.jpg';
+import CarouselImg3 from '../../../../shared/assets/images/carousel/1222222.jpg';
+import CarouselImg4 from '../../../../shared/assets/images/carousel/first.jpg';
+import CarouselImg5 from '../../../../shared/assets/images/carousel/second.jpg';
 
 export interface ICarouselSlide {
   id: string;
@@ -15,23 +17,37 @@ export const PROBLEMS_INTRO =
 export const CAROUSEL_SLIDES: ICarouselSlide[] = [
   {
     id: '1',
-    imageUrl: LighterImage,
-    title: 'Проект ОДД под ключ',
+    imageUrl: CarouselImg1,
+    title: 'Дорожные знаки',
     solutionText:
-      'Разработка и согласование схемы организации дорожного движения в установленные сроки с гарантией прохождения экспертизы.',
+      'Установка дорожных знаков по ГОСТ на объектах любой сложности.',
   },
   {
     id: '2',
-    imageUrl: MarkingsImage,
-    title: 'Знаки и разметка',
+    imageUrl: CarouselImg2,
+    title: 'Светофоры',
     solutionText:
-      'Установка дорожных знаков и нанесение разметки по нормам ПДД и ГОСТ на объектах любой сложности.',
+      'Монтаж и обслуживание светофорных объектов и ИДН.',
   },
   {
     id: '3',
-    imageUrl: SignsImage,
-    title: 'Сопровождение на всех этапах',
+    imageUrl: CarouselImg3,
+    title: 'Дорожная разметка',
     solutionText:
-      'От разработки проекта до сдачи в эксплуатацию — единый подрядчик и контроль сроков.',
+      'Нанесение разметки по нормам ПДД и ГОСТ.',
+  },
+  {
+    id: '4',
+    imageUrl: CarouselImg4,
+    title: 'Искусственные неровности',
+    solutionText:
+      'Устройство лежачих полицейских и искусственных неровностей по нормативам.',
+  },
+  {
+    id: '5',
+    imageUrl: CarouselImg5,
+    title: 'Ограждения и средства организации движения',
+    solutionText:
+      'Установка ограждений, барьерных систем и прочих средств ОДД.',
   },
 ];

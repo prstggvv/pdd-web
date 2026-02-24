@@ -9,16 +9,19 @@ interface IDirectionsProps {
 
 export const Directions = ({ className }: IDirectionsProps) => {
   return (
-    <section id="projects" className={classNames(cls.section, {}, [className ?? ''])}>
+    <section
+      id='projects'
+      className={classNames(cls.section, {}, [className ?? ''])}
+    >
       <Titles
         uptitle='Наши проекты'
         title='То что мы реализовали'
         dark={true}
         className={classNames(cls.titles, {}, [])}
       />
-      <div className={classNames(cls.container, {}, [])}>
+      <ul className={classNames(cls.container, {}, [])}>
         {directionsData.map((direction) => (
-          <div
+          <li
             key={direction.id}
             className={classNames(cls.panel, {}, [])}
             tabIndex={0}
@@ -44,9 +47,9 @@ export const Directions = ({ className }: IDirectionsProps) => {
                 {direction.subtitle}
               </p>
             </div>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 };

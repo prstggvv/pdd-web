@@ -21,7 +21,7 @@
   width: 100%;
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.7) 100%),
-    url("https: //sun9-73.userapi.com/impf/5dbukgVCXw0pD_Tpdkhbum4ip3WlzMv7NOtRnA/Q1XLiU97Otk.jpg?size=1280x848&quality=96&sign=38da420d5909bb97559a8d65da62be11&c_uniq_tag=TUUQ_PNdphxCPLMeaiH-Kske8wJcuIlePemCWuLjYW4&type=album") center / cover no-repeat;
+    url('../../../../shared/assets/images/hero.jpg') center / cover no-repeat;
   z-index: 0;
 }
 
@@ -71,7 +71,7 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .text {
@@ -96,7 +96,7 @@
 }
 
 .card {
-  background: var(--color-bar);
+  background: var(--color-bg);
   padding: 24px 32px;
   min-width: 0;
   display: flex;

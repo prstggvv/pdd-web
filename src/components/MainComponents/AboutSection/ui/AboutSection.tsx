@@ -19,8 +19,8 @@ export const AboutSection = ({ className }: IAboutSectionProps) => {
     >
       <div className={classNames(cls.container, {}, [])}>
         <Titles
-          uptitle="О КОМПАНИИ"
-          title="О нас"
+          uptitle='О нас'
+          title='О компании'
           dark={false}
           className={classNames(cls.titles, {}, [])}
         />

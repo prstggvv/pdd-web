@@ -1,5 +1,6 @@
 import cls from './ProductSection.module.css';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
+import { scrollToSection } from '../../../../shared/lib/scrollToSection/scrollToSection';
 import Titles from '../../../../shared/ui/Titles/Titles';
 import { PRODUCT_CARDS, PRODUCT_INTRO } from '../model/productSectionData';
 
@@ -23,8 +24,8 @@ export const ProductSection = ({ className }: IProductSectionProps) => {
       <div className={classNames(cls.container, {}, [])}>
         <div className={classNames(cls.intro, {}, [])}>
           <Titles
-            uptitle="Чем мы занимаемся"
-            title="Наш продукт"
+            uptitle='Наш продукт'
+            title='Чем мы занимаемся'
             dark={false}
             className={classNames(cls.titles, {}, [])}
           />
@@ -35,6 +36,10 @@ export const ProductSection = ({ className }: IProductSectionProps) => {
             tabIndex={0}
             aria-label="Оставить заявку"
             onKeyDown={handleKeyDown}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('contacts');
+            }}
           >
             <span className={classNames(cls.ctaText, {}, [])}>Оставить заявку</span>
             <span className={classNames(cls.ctaArrow, {}, [])}>→</span>

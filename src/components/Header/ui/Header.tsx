@@ -5,6 +5,7 @@ import { classNames } from '../../../shared/lib/classNames/classNames';
 import BurgerButton from '../../../shared/ui/BurgerButton/BurgerButton';
 import { NavMenu } from '../../NavMenu';
 import type { INavItem } from '../../NavMenu';
+import LogoSvg from '../../../shared/assets/images/icons/logo.svg';
 
 const NAV_ITEMS: INavItem[] = [
   { href: '#problems', label: 'Проблемы и решения' },
@@ -89,7 +90,11 @@ export const Header = ({ className }: IHeaderData) => {
             className={classNames(cls.logo, {}, [])}
             aria-label="КОДД — на главную"
           >
-            <span className={classNames(cls.icon, {}, [])} aria-hidden="true" />
+            <img
+              src={LogoSvg}
+              className={classNames(cls.icon, {}, [])}
+              alt='Логотип'
+            />
             <span className={classNames(cls.logoText, {}, [])}>КОДД</span>
           </a>
           <nav className={classNames(cls.nav, {}, [])}>

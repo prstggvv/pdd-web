@@ -35,6 +35,8 @@
 .contactList {
   display: flex;
   flex-direction: column;
+  list-style: none;
+  padding: 0;
   gap: clamp(20px, 3vw, 28px);
 }
 

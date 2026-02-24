@@ -4,6 +4,7 @@ import { useSwipeable } from 'react-swipeable';
 import cls from './ProblemsCarouselSection.module.css';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
 import Titles from '../../../../shared/ui/Titles/Titles';
+import { scrollToSection } from '../../../../shared/lib/scrollToSection/scrollToSection';
 import {
   CAROUSEL_SLIDES,
   PROBLEMS_INTRO,
@@ -92,7 +93,7 @@ export const ProblemsCarouselSection = ({ className }: IProblemsCarouselSectionP
             {PROBLEMS_INTRO}
           </motion.p>
           <motion.a
-            href="#contacts"
+            href="#product"
             className={classNames(cls.cta, {}, [])}
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -100,6 +101,10 @@ export const ProblemsCarouselSection = ({ className }: IProblemsCarouselSectionP
             transition={{ duration: 0.4, delay: 0.2 }}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('product');
+            }}
           >
             Подробнее
           </motion.a>
