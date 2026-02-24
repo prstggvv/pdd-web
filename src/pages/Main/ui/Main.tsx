@@ -8,6 +8,7 @@ import { ProblemsCarouselSection } from "../../../components/MainComponents/Prob
 import { ProductSection } from "../../../components/MainComponents/ProductSection";
 import { classNames } from "../../../shared/lib/classNames/classNames";
 import cls from './Main.module.css';
+import { PhotosSection } from "../../../components/MainComponents/PhotosSection";
 
 interface MainProps {
   className?: string;
@@ -20,6 +21,7 @@ const Main = ({ className }: MainProps) => {
       <ProblemsCarouselSection />
       <AboutSection />
       <InstrComponent />
+      <PhotosSection />
       <ProductSection />
       <Directions />
       <ContactSection />

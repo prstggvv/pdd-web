@@ -1,8 +1,8 @@
 import LighterImage from '../../../../shared/assets/images/products/lighter.jpg';
 import SignsImage from '../../../../shared/assets/images/products/signs.jpg';
 import MarkingsImage from '../../../../shared/assets/images/products/markings.jpg';
-import BumpsImage from '../../../../shared/assets/images/carousel/first.jpg';
-import FencesImage from '../../../../shared/assets/images/carousel/second.jpg';
+import BumpsImage from '../../../../shared/assets/images/products/nerovnost.jpg';
+import FencesImage from '../../../../shared/assets/images/products/plastica.jpg';
 
 export interface IProductCard {
   id: string;
