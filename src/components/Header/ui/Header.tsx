@@ -4,6 +4,7 @@ import cls from './Header.module.css';
 import { classNames } from '../../../shared/lib/classNames/classNames';
 import BurgerButton from '../../../shared/ui/BurgerButton/BurgerButton';
 import { NavMenu } from '../../NavMenu';
+import { scrollToSection } from '../../../shared/lib/scrollToSection/scrollToSection';
 import type { INavItem } from '../../NavMenu';
 import LogoSvg from '../../../shared/assets/images/icons/logo.svg';
 
@@ -86,7 +87,11 @@ export const Header = ({ className }: IHeaderData) => {
       >
         <div className={classNames(cls.container, {}, [])}>
           <a
-            href="/"
+            href="#hero"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('hero');
+            }}
             className={classNames(cls.logo, {}, [])}
             aria-label="КОДД — на главную"
           >

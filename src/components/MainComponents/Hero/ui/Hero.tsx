@@ -9,6 +9,7 @@ interface IHeroProps {
 export const Hero = ({ className }: IHeroProps) => {
   return (
     <motion.section
+      id='hero'
       className={classNames(cls.section, {}, [className ?? ''])}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
