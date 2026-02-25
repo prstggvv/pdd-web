@@ -100,7 +100,6 @@ export const Header = ({ className }: IHeaderData) => {
               className={classNames(cls.icon, {}, [])}
               alt='Логотип'
             />
-            <span className={classNames(cls.logoText, {}, [])}>КОДД</span>
           </a>
           <nav className={classNames(cls.nav, {}, [])}>
             {NAV_ITEMS.map((item) => (

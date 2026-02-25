@@ -24,6 +24,12 @@
   gap: clamp(28px, 4vw, 44px);
 }
 
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .lead {
   font-family: var(--font-roboto-regular);
   font-size: clamp(16px, 2vw, 20px);
@@ -32,6 +38,36 @@
   max-width: 720px;
   opacity: 0;
   animation: fadeInUp 0.7s ease 0.25s forwards;
+}
+
+.partnerList {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: disc;
+}
+
+.partnerItem {
+  color: var(--color-bg);
+  font-family: var(--font-roboto-regular);
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.5;
+}
+
+.partnerLink {
+  color: var(--color-bg);
+  text-decoration: underline;
+  text-decoration-color: rgba(230, 126, 34, 0.45);
+  text-underline-offset: 3px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.partnerLink:hover,
+.partnerLink:focus-visible {
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent);
 }
 
 .features {

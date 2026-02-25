@@ -78,8 +78,8 @@ export const ProblemsCarouselSection = ({ className }: IProblemsCarouselSectionP
       <div className={classNames(cls.container, {}, [])}>
         <div className={classNames(cls.problemsColumn, {}, [])}>
           <Titles
-            uptitle="ПРОБЛЕМЫ И РЕШЕНИЯ"
-            title="Что мы решаем"
+            uptitle='Проблемы и решения'
+            title='Что мы решаем'
             dark={true}
             className={classNames(cls.titles, {}, [])}
           />

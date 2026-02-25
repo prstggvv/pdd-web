@@ -27,9 +27,22 @@ export const Hero = ({ className }: IHeroProps) => {
           <h1
             className={classNames(cls.titles, {}, [])}
           >
-            <motion.span className={classNames(cls.span, {}, [])} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}>Обустройство дорожной инфраструктуры</motion.span>
-            <motion.span className={classNames(cls.span, {}, [])} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }}>под ключ - </motion.span>
-            <motion.span className={classNames(cls.span, {}, [])} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.6 }}>без срывов и переделок</motion.span>
+            <motion.span
+              className={classNames(cls.span, {}, [cls.spanMain])}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              Обустройство дорожной инфраструктуры
+            </motion.span>
+            <motion.span
+              className={classNames(cls.spanAccent, {}, [])}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.55 }}
+            >
+              под ключ без срывов и переделок
+            </motion.span>
           </h1>
           <motion.div
             className={classNames(cls.content, {}, [])}
