@@ -21,15 +21,6 @@ export const Footer = ({ className }: IFooterProps) => {
           <address className={classNames(cls.address, {}, [])}>
             проспект Победы, 109А, 295017, г. Симферополь
           </address>
-          <a
-            href="#"
-            className={classNames(cls.cta, {}, [])}
-            tabIndex={0}
-            aria-label="Оставить заявку"
-            onKeyDown={handleKeyDownLink}
-          >
-            Оставить заявку
-          </a>
         </div>
         <div className={classNames(cls.col, {}, [cls.colSocial])}>
           <a
