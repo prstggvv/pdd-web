@@ -16,8 +16,6 @@ export const Hero = ({ className }: IHeroProps) => {
       transition={{ duration: 0.6 }}
     >
       <div className={classNames(cls.container, {}, [])}>
-        <div
-          className={classNames(cls.backImage, {}, [])}></div>
         <motion.div
           className={classNames(cls.block, {}, [])}
           initial={{ opacity: 0, y: 32 }}
