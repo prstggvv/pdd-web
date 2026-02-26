@@ -6,7 +6,6 @@ import BurgerButton from '../../../shared/ui/BurgerButton/BurgerButton';
 import { NavMenu } from '../../NavMenu';
 import { scrollToSection } from '../../../shared/lib/scrollToSection/scrollToSection';
 import type { INavItem } from '../../NavMenu';
-import LogoSvg from '../../../shared/assets/images/icons/logo.svg';
 
 const NAV_ITEMS: INavItem[] = [
   { href: '#problems', label: 'Проблемы и решения' },
@@ -121,11 +120,7 @@ export const Header = ({ className }: IHeaderData) => {
             aria-label="КОДД — на главную"
             variants={itemVariants}
           >
-            <img
-              src={LogoSvg}
-              className={classNames(cls.icon, {}, [])}
-              alt='Логотип'
-            />
+            <span className={classNames(cls.logoText, {}, [])}>КОДД</span>
           </motion.a>
           <motion.nav
             className={classNames(cls.nav, {}, [])}
