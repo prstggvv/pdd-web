@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import cls from './Hero.module.css';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
+import LogoSvg from '../../../../shared/assets/images/icons/logo.svg';
 
 interface IHeroProps {
   className?: string;
@@ -13,40 +14,46 @@ export const Hero = ({ className }: IHeroProps) => {
       className={classNames(cls.section, {}, [className ?? ''])}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
       <div className={classNames(cls.container, {}, [])}>
         <motion.div
           className={classNames(cls.block, {}, [])}
-          initial={{ opacity: 0, y: 32 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.15 }}
         >
-          <h1
-            className={classNames(cls.titles, {}, [])}
+          <motion.div
+            className={classNames(cls.heroLogoWrap, {}, [])}
+            initial={{ opacity: 0, scale: 0.88 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
+            <img src={LogoSvg} alt="КОДД" className={classNames(cls.heroLogo, {}, [])} />
+          </motion.div>
+          <h1 className={classNames(cls.titles, {}, [])}>
             <motion.span
               className={classNames(cls.span, {}, [cls.spanMain])}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              transition={{ duration: 0.5, delay: 0.45, ease: 'easeOut' }}
             >
               Обустройство дорожной инфраструктуры
             </motion.span>
             <motion.span
               className={classNames(cls.spanAccent, {}, [])}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.55 }}
+              transition={{ duration: 0.5, delay: 0.6, ease: 'easeOut' }}
             >
               под ключ без срывов и переделок
             </motion.span>
           </h1>
           <motion.div
             className={classNames(cls.content, {}, [])}
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+            transition={{ duration: 0.5, delay: 0.8, ease: 'easeOut' }}
           >
             <p className={classNames(cls.text, {}, [])}>
               Работаем в реальных условиях трафика. Сроки, безопасность и качество под полным контролем.

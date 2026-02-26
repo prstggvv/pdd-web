@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import cls from './ProductSection.module.css';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
 import { scrollToSection } from '../../../../shared/lib/scrollToSection/scrollToSection';
@@ -15,6 +16,18 @@ const handleKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
   }
 };
 
+const cardsVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.08, delayChildren: 0.12 },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export const ProductSection = ({ className }: IProductSectionProps) => {
   return (
     <section
@@ -22,7 +35,13 @@ export const ProductSection = ({ className }: IProductSectionProps) => {
       className={classNames(cls.section, {}, [className ?? ''])}
     >
       <div className={classNames(cls.container, {}, [])}>
-        <div className={classNames(cls.intro, {}, [])}>
+        <motion.div
+          className={classNames(cls.intro, {}, [])}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
           <Titles
             uptitle='Наш продукт'
             title='Чем мы занимаемся'
@@ -44,15 +63,23 @@ export const ProductSection = ({ className }: IProductSectionProps) => {
             <span className={classNames(cls.ctaText, {}, [])}>Оставить заявку</span>
             <span className={classNames(cls.ctaArrow, {}, [])}>→</span>
           </a>
-        </div>
+        </motion.div>
 
-        <div className={classNames(cls.cardsGrid, {}, [])}>
+        <motion.div
+          className={classNames(cls.cardsGrid, {}, [])}
+          variants={cardsVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.08 }}
+        >
           {PRODUCT_CARDS.map((card, index) => (
-            <article
+            <motion.article
               key={card.id}
               className={classNames(cls.card, { [cls.cardWide]: index === 0 }, [])}
               tabIndex={0}
               aria-label={card.title}
+              variants={cardVariants}
+              transition={{ duration: 0.45, ease: 'easeOut' }}
             >
               <div className={classNames(cls.cardImageWrap, {}, [])}>
                 <img
@@ -66,9 +93,9 @@ export const ProductSection = ({ className }: IProductSectionProps) => {
                 <h3 className={classNames(cls.cardTitle, {}, [])}>{card.title}</h3>
                 <p className={classNames(cls.cardDescription, {}, [])}>{card.description}</p>
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

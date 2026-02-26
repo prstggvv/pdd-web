@@ -17,9 +17,32 @@ const NAV_ITEMS: INavItem[] = [
   { href: '#contacts', label: 'Контакты' },
 ];
 
-const fadeIn = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: -8 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.65, ease: [0.22, 0.61, 0.36, 1] as const },
+  },
+};
+
+const navItemVariants = {
+  hidden: { opacity: 0, y: -5 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: [0.22, 0.61, 0.36, 1] as const },
+  },
 };
 
 interface IHeaderData {
@@ -77,16 +100,18 @@ export const Header = ({ className }: IHeaderData) => {
 
   return (
     <>
-      <motion.header
+      <header
         ref={headerRef}
-        initial="hidden"
-        animate="visible"
-        variants={fadeIn}
         className={classNames(cls.header, { [cls.scrolled]: scrolled }, [className ?? ''])}
         style={menuOpen ? { zIndex: 1001 } : undefined}
       >
-        <div className={classNames(cls.container, {}, [])}>
-          <a
+        <motion.div
+          className={classNames(cls.container, {}, [])}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.a
             href="#hero"
             onClick={(e) => {
               e.preventDefault();
@@ -94,41 +119,51 @@ export const Header = ({ className }: IHeaderData) => {
             }}
             className={classNames(cls.logo, {}, [])}
             aria-label="КОДД — на главную"
+            variants={itemVariants}
           >
             <img
               src={LogoSvg}
               className={classNames(cls.icon, {}, [])}
               alt='Логотип'
             />
-          </a>
-          <nav className={classNames(cls.nav, {}, [])}>
+          </motion.a>
+          <motion.nav
+            className={classNames(cls.nav, {}, [])}
+            variants={itemVariants}
+          >
             {NAV_ITEMS.map((item) => (
-              <a
+              <motion.a
                 key={item.href}
                 href={item.href}
                 className={classNames(cls.link, {}, [])}
                 onClick={handleSmoothScroll}
+                variants={navItemVariants}
               >
                 {item.label}
-              </a>
+              </motion.a>
             ))}
-          </nav>
-          <div className={classNames(cls.contact, {}, [])}>
+          </motion.nav>
+          <motion.div
+            className={classNames(cls.contact, {}, [])}
+            variants={itemVariants}
+          >
             <a href="tel:+79782176422" className={classNames(cls.contactLink, {}, [])}>
               +7 (978) 217 64 22
             </a>
             <a href="mailto:trafsaf@yandex.ru" className={classNames(cls.contactLink, {}, [])}>
               trafsaf@yandex.ru
             </a>
-          </div>
-          <BurgerButton
-            className={classNames(cls.button, {}, [])}
-            menuOpen={menuOpen}
-            handleBurgerClick={handleBurgerClick}
-            handleKeyDown={handleKeyDown}
-          />
-        </div>
-      </motion.header>
+          </motion.div>
+          <motion.div variants={itemVariants}>
+            <BurgerButton
+              className={classNames(cls.button, {}, [])}
+              menuOpen={menuOpen}
+              handleBurgerClick={handleBurgerClick}
+              handleKeyDown={handleKeyDown}
+            />
+          </motion.div>
+        </motion.div>
+      </header>
       <NavMenu
         isOpen={menuOpen}
         onClose={handleNavLinkClick}

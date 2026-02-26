@@ -67,16 +67,18 @@ export const ProblemsCarouselSection = ({ className }: IProblemsCarouselSectionP
   );
 
   return (
-    <motion.section
+    <section
       id="problems"
       className={classNames(cls.section, {}, [className ?? ''])}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.5 }}
     >
       <div className={classNames(cls.container, {}, [])}>
-        <div className={classNames(cls.problemsColumn, {}, [])}>
+        <motion.div
+          className={classNames(cls.problemsColumn, {}, [])}
+          initial={{ opacity: 0, x: -24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
           <Titles
             uptitle='Проблемы и решения'
             title='Ключевые риски и их решения'
@@ -87,7 +89,7 @@ export const ProblemsCarouselSection = ({ className }: IProblemsCarouselSectionP
             className={classNames(cls.problemsList, {}, [])}
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.4, delay: 0.1 }}
           >
             {PROBLEMS_LIST.map((problem) => (
@@ -101,7 +103,7 @@ export const ProblemsCarouselSection = ({ className }: IProblemsCarouselSectionP
             className={classNames(cls.cta, {}, [])}
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.4, delay: 0.2 }}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
@@ -112,9 +114,15 @@ export const ProblemsCarouselSection = ({ className }: IProblemsCarouselSectionP
           >
             Подробнее
           </motion.a>
-        </div>
+        </motion.div>
 
-        <div className={classNames(cls.carouselColumn, {}, [])}>
+        <motion.div
+          className={classNames(cls.carouselColumn, {}, [])}
+          initial={{ opacity: 0, x: 24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
           <div className={classNames(cls.arrowsRow, {}, [])}>
             <button
               type="button"
@@ -164,9 +172,9 @@ export const ProblemsCarouselSection = ({ className }: IProblemsCarouselSectionP
               />
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 

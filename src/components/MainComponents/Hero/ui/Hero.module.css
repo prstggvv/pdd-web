@@ -21,15 +21,28 @@
 .block {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: clamp(20px, 2.5vw, 28px);
   position: relative;
   z-index: 1;
   align-items: center;
   justify-content: center;
-  gap: 24px 32px;
   width: 100%;
   max-width: min(1240px, 100%);
   margin: 0 auto;
+}
+
+.heroLogoWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroLogo {
+  width: clamp(80px, 14vw, 120px);
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.4));
 }
 
 .num {
@@ -159,6 +172,10 @@
     gap: clamp(16px, 3vw, 22px);
   }
 
+  .heroLogo {
+    width: clamp(72px, 18vw, 100px);
+  }
+
   .titles {
     font-size: clamp(24px, 6.6vw, 34px);
     line-height: 1.1;
@@ -190,5 +207,9 @@
   .container {
     padding-top: clamp(100px, 20vw, 120px);
     padding-bottom: clamp(28px, 6vw, 36px);
+  }
+
+  .heroLogo {
+    width: clamp(64px, 22vw, 88px);
   }
 }
