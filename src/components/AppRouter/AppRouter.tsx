@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { motion } from 'framer-motion';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Outlet } from 'react-router-dom';
 import { Main } from '../../pages/Main';
 import { Preloader } from '../../shared/ui/Preloader/Preloader';
 import { NotFoundPage } from '../../pages/NotFoundPage';
@@ -21,18 +21,17 @@ const MainWithTransition = () => (
 const AppRouter = () => {
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <>
-            <Header />
+      <Route path="/" element={<><Header /><Outlet /></>}>
+        <Route
+          index
+          element={
             <Suspense fallback={<PageLoader />}>
               <MainWithTransition />
             </Suspense>
-          </>
-        }
-      />
-      <Route path="*" element={<NotFoundPage />} />
+          }
+        />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
     </Routes>
   );
 };

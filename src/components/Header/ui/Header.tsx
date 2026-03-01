@@ -107,17 +107,17 @@ export const Header = ({ className }: IHeaderData) => {
         <motion.div
           className={classNames(cls.container, {}, [])}
           variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+          initial='hidden'
+          animate='visible'
         >
           <motion.a
-            href="#hero"
+            href='#hero'
             onClick={(e) => {
               e.preventDefault();
               scrollToSection('hero');
             }}
             className={classNames(cls.logo, {}, [])}
-            aria-label="КОДД — на главную"
+            aria-label='КОДД — на главную'
             variants={itemVariants}
           >
             <span className={classNames(cls.logoText, {}, [])}>КОДД</span>
@@ -142,10 +142,10 @@ export const Header = ({ className }: IHeaderData) => {
             className={classNames(cls.contact, {}, [])}
             variants={itemVariants}
           >
-            <a href="tel:+79782176422" className={classNames(cls.contactLink, {}, [])}>
+            <a href='tel:+79782176422' className={classNames(cls.contactLink, {}, [])}>
               +7 (978) 217 64 22
             </a>
-            <a href="mailto:trafsaf@yandex.ru" className={classNames(cls.contactLink, {}, [])}>
+            <a href='mailto:trafsaf@yandex.ru' className={classNames(cls.contactLink, {}, [])}>
               trafsaf@yandex.ru
             </a>
           </motion.div>
