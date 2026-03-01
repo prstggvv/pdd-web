@@ -1,4 +1,5 @@
 import AppRouter from '../components/AppRouter/AppRouter';
+import { ConsultantChat } from '../components/ConsultantChat';
 import { classNames } from '../shared/lib/classNames/classNames';
 import './styles/index.css';
 
@@ -8,6 +9,7 @@ function App() {
       <div className={classNames('wrapper', {}, [])}>
         <AppRouter />
       </div>
+      <ConsultantChat />
     </div>
   );
 }
