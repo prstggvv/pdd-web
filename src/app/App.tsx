@@ -9,7 +9,6 @@ function App() {
       <div className={classNames('wrapper', {}, [])}>
         <AppRouter />
       </div>
-      <ConsultantChat />
     </div>
   );
 }
