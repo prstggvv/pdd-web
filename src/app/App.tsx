@@ -1,5 +1,4 @@
 import AppRouter from '../components/AppRouter/AppRouter';
-import { ConsultantChat } from '../components/ConsultantChat';
 import { classNames } from '../shared/lib/classNames/classNames';
 import './styles/index.css';
 
