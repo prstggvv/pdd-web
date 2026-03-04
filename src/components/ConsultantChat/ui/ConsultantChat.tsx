@@ -92,6 +92,11 @@ export const ConsultantChat = () => {
       setMessages((prev) => [
         ...prev,
         { id: `r-${Date.now()}`, text: reply, from: 'consultant' },
+        {
+          id: `h-${Date.now() + 1}`,
+          text: 'Чем ещё могу помочь?',
+          from: 'consultant',
+        },
       ]);
       if (!panelVisibleRef.current) {
         setUnreadCount((c) => c + 1);
