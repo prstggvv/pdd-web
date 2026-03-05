@@ -145,9 +145,11 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(to top,
-      rgba(0, 0, 0, 0.78) 6%,
-      rgba(0, 0, 0, 0.46) 48%,
-      rgba(0, 0, 0, 0.14) 100%);
+      rgba(0, 0, 0, 0.78) 0%,
+      rgba(0, 0, 0, 0.65) 20%,
+      rgba(0, 0, 0, 0.45) 45%,
+      rgba(0, 0, 0, 0.22) 70%,
+      transparent 100%);
   pointer-events: none;
   transition: background 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -155,9 +157,11 @@
 .card:hover .cardOverlay,
 .card:focus-within .cardOverlay {
   background: linear-gradient(to top,
-      rgba(0, 0, 0, 0.84) 10%,
-      rgba(0, 0, 0, 0.52) 56%,
-      rgba(0, 0, 0, 0.2) 100%);
+      rgba(0, 0, 0, 0.84) 0%,
+      rgba(0, 0, 0, 0.7) 22%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0.25) 75%,
+      transparent 100%);
 }
 
 .cardText {
@@ -170,7 +174,11 @@
   gap: clamp(10px, 1.2vw, 14px);
   width: 100%;
   padding: clamp(20px, 2.4vw, 30px);
-  background: linear-gradient(to top, rgba(14, 14, 14, 0.76), rgba(14, 14, 14, 0.12));
+  background: linear-gradient(to top,
+      rgba(14, 14, 14, 0.78) 0%,
+      rgba(14, 14, 14, 0.5) 35%,
+      rgba(14, 14, 14, 0.2) 70%,
+      transparent 100%);
   backdrop-filter: blur(1px);
   transform: translateY(8px);
   opacity: 0.96;

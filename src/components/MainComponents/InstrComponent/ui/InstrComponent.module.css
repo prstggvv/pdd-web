@@ -139,12 +139,7 @@
   }
 }
 
-/* Mobile landscape and small tablets */
 @media screen and (max-width: 768px) {
-  .container {
-    padding: clamp(24px, 4vw, 32px) clamp(12px, 2vw, 20px) 50px;
-  }
-
   .infoBlock {
     gap: clamp(18px, 2.5vw, 22px);
   }
@@ -164,14 +159,17 @@
     margin-top: clamp(16px, 2vw, 24px);
     width: 100%;
     max-width: 300px;
-    align-self: center;
+    align-self: flex-start;
   }
 }
 
-/* Mobile portrait */
 @media screen and (max-width: 480px) {
+  .section {
+    padding: clamp(20px, 4vw, 24px) 0px;
+  }
+
   .container {
-    padding: clamp(20px, 4vw, 24px) clamp(12px, 3vw, 16px) 50px;
+    padding: clamp(32px, 4vw, 48px) clamp(16px, 2.5vw, 20px) 50px;
   }
 
   .infoBlock {

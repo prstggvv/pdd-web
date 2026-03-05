@@ -2,9 +2,17 @@ import { motion } from 'framer-motion';
 import cls from './Hero.module.css';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
 import LogoSvg from '../../../../shared/assets/images/icons/logo.svg';
+import { scrollToSection } from '../../../../shared/lib/scrollToSection/scrollToSection';
 
 interface IHeroProps {
   className?: string;
+}
+
+const handleKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    (e.currentTarget as HTMLAnchorElement).click();
+  }
 };
 
 export const Hero = ({ className }: IHeroProps) => {
@@ -49,6 +57,31 @@ export const Hero = ({ className }: IHeroProps) => {
               под ключ без срывов и переделок
             </motion.span>
           </h1>
+          <motion.div
+            className={classNames(cls.ctaWrap, {}, [])}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.85, ease: 'easeOut' }}
+          >
+            <a
+              href="#contacts"
+              className={classNames(cls.ctaLink, {}, [])}
+              tabIndex={0}
+              aria-label="Записаться"
+              onKeyDown={handleKeyDown}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('contacts');
+              }}
+            >
+              <span className={classNames(cls.ctaText, {}, [])}>Записаться</span>
+              <span className={classNames(cls.ctaArrow, {}, [])} aria-hidden>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 5v14M7 12l5 5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+            </a>
+          </motion.div>
           <motion.div
             className={classNames(cls.content, {}, [])}
             initial={{ opacity: 0, y: 20 }}

@@ -199,77 +199,78 @@ export const ContactSection = ({ className }: IContactSectionProps) => {
               </motion.li>
             </motion.ul>
           </motion.div>
+
           <motion.div
-            className={classNames(cls.mapWrap, {}, [])}
-            initial={{ opacity: 0, y: 24 }}
+            className={classNames(cls.formBlock, {}, [])}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
           >
-            <div className={classNames(cls.mapInner, {}, [])}>
-              <iframe
-                src={YANDEX_MAP_SRC}
-                width='560'
-                height='711'
-                frameBorder='0'
-                allowFullScreen
-                title='Карта: проспект Победы, 109А, Симферополь'
-                className={classNames(cls.mapIframe, {}, [])}
-              />
+            <div className={cls.formFrame}>
+              <Form title="Оставить заявку" onSubmit={handleSubmit}>
+                <div className={cls.formRow}>
+                  <Input
+                    label="Имя"
+                    value={name}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                      setNameError('');
+                    }}
+                    error={nameError}
+                    placeholder="Ваше имя"
+                    disabled={status === 'sending'}
+                    required
+                  />
+                  <Input
+                    label="Номер телефона"
+                    type="tel"
+                    value={phone}
+                    onChange={handlePhoneChange}
+                    onKeyDown={handlePhoneKeyDown}
+                    error={phoneError}
+                    placeholder={PHONE_PLACEHOLDER}
+                    disabled={status === 'sending'}
+                    required
+                  />
+                </div>
+                <div className={cls.formActions}>
+                  <button
+                    type="submit"
+                    className={cls.submitBtn}
+                    disabled={status === 'sending'}
+                  >
+                    {status === 'sending' ? 'Отправка…' : 'Отправить заявку'}
+                  </button>
+                  {status === 'success' && (
+                    <span className={cls.formSuccess}>Заявка отправлена.</span>
+                  )}
+                  {status === 'error' && submitError && (
+                    <span className={cls.formError}>{submitError}</span>
+                  )}
+                </div>
+              </Form>
             </div>
           </motion.div>
         </div>
 
         <motion.div
-          className={classNames(cls.formBlock, {}, [])}
-          initial={{ opacity: 0, y: 20 }}
+          className={classNames(cls.mapWrap, {}, [])}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.4, delay: 0.1 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          <div className={cls.formFrame}>
-            <Form title="Оставить заявку" onSubmit={handleSubmit}>
-              <div className={cls.formRow}>
-                <Input
-                  label="Имя"
-                  value={name}
-                  onChange={(e) => {
-                    setName(e.target.value);
-                    setNameError('');
-                  }}
-                  error={nameError}
-                  placeholder="Ваше имя"
-                  disabled={status === 'sending'}
-                  required
-                />
-                <Input
-                  label="Номер телефона"
-                  type="tel"
-                  value={phone}
-                  onChange={handlePhoneChange}
-                  onKeyDown={handlePhoneKeyDown}
-                  error={phoneError}
-                  placeholder={PHONE_PLACEHOLDER}
-                  disabled={status === 'sending'}
-                  required
-                />
-              </div>
-              <div className={cls.formActions}>
-                <button
-                  type="submit"
-                  className={cls.submitBtn}
-                  disabled={status === 'sending'}
-                >
-                  {status === 'sending' ? 'Отправка…' : 'Отправить заявку'}
-                </button>
-                {status === 'success' && (
-                  <span className={cls.formSuccess}>Заявка отправлена.</span>
-                )}
-                {status === 'error' && submitError && (
-                  <span className={cls.formError}>{submitError}</span>
-                )}
-              </div>
-            </Form>
+          <div className={classNames(cls.mapInner, {}, [])}>
+            <iframe
+              src={YANDEX_MAP_SRC}
+              width='560'
+              height='554'
+              frameBorder='0'
+              allowFullScreen
+              title='Карта: проспект Победы, 109А, Симферополь'
+              className={classNames(cls.mapIframe, {}, [])}
+            />
           </div>
         </motion.div>
       </div>
