@@ -4,6 +4,7 @@ import {
   type ConsultantWebhookResponse,
 } from '../../../shared/lib/api/MainApi';
 import cls from './ConsultantChat.module.css';
+import MessageSvg from '../../../shared/assets/images/message/message.svg';
 
 export type MessageFrom = 'consultant' | 'user';
 
@@ -90,7 +91,6 @@ export const ConsultantChat = () => {
         extractReply(res) ??
         'Принято. Чем ещё могу помочь?';
 
-      // Завершаем первую "печать" и показываем ответ
       setIsTyping(false);
       const replyId = `r-${Date.now()}`;
       setMessages((prev) => [
@@ -101,14 +101,10 @@ export const ConsultantChat = () => {
         setUnreadCount((c) => c + 1);
       }
 
-      // Ждём 1 секунду
       await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      // Вторая "печать" консультанта
       setIsTyping(true);
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      // Добавляем дополнительное сообщение "Чем ещё могу помочь?"
       setIsTyping(false);
       setMessages((prev) => [
         ...prev,
@@ -216,7 +212,11 @@ export const ConsultantChat = () => {
         onClick={showPanel ? handleClose : handleOpen}
         aria-label={showPanel ? 'Закрыть чат' : 'Открыть чат с консультантом'}
       >
-        <span className={cls.triggerIcon} aria-hidden>💬</span>
+        <img
+          className={cls.triggerIcon} aria-hidden
+          src={MessageSvg}
+          alt='Логотип картинки с сообщением'
+        />
         {unreadCount > 0 && (
           <span className={cls.badge} aria-label={`Непрочитанных: ${unreadCount}`}>
             {unreadCount > 99 ? '99+' : unreadCount}
