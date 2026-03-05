@@ -24,7 +24,7 @@
   max-width: 1240px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: auto auto;
   justify-content: space-between;
   align-items: center;
   min-height: clamp(72px, 10vw, 88px);
@@ -138,9 +138,45 @@
   outline-offset: 2px;
 }
 
+.button {
+  justify-self: end;
+}
+
+/* Заполнитель, чтобы сетка не сдвигалась без кнопки */
+.burgerPlaceholder {
+  width: 32px;
+  height: 32px;
+  justify-self: end;
+}
+
+/* Слой с бургером поверх NavMenu (z-index: 201 > 200) */
+.burgerLayer {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95.83%;
+  max-width: 1240px;
+  z-index: 201;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: clamp(72px, 10vw, 88px);
+  padding: clamp(12px, 1.5vw, 16px) max(32px, env(safe-area-inset-right)) clamp(12px, 1.5vw, 16px) max(32px, env(safe-area-inset-left));
+  pointer-events: none;
+}
+
+.burgerLayer > * {
+  pointer-events: auto;
+}
+
 @media screen and (max-width: 1083px) {
   .container {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto auto;
+    min-height: clamp(64px, 12vw, 80px);
+  }
+
+  .burgerLayer {
     min-height: clamp(64px, 12vw, 80px);
   }
 
@@ -152,10 +188,6 @@
   .nav,
   .contact {
     display: none;
-  }
-
-  .button {
-    justify-self: end;
   }
 }
 

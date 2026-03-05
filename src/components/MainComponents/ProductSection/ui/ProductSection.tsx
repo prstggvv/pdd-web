@@ -44,7 +44,7 @@ export const ProductSection = ({ className }: IProductSectionProps) => {
         >
           <Titles
             uptitle='Наш продукт'
-            title='Чем мы занимаемся'
+            title='Комплекс работ по обустройству автомобильных дорог'
             dark={false}
             className={classNames(cls.titles, {}, [])}
           />

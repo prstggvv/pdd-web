@@ -81,17 +81,21 @@
   align-items: flex-start;
   gap: clamp(16px, 2.5vw, 24px);
   padding: clamp(20px, 3vw, 28px);
-  background: #efefef;
-  border-radius: 8px;
+  background: #f5f5f5;
+  border-radius: 12px;
   border-left: 3px solid var(--color-accent);
   opacity: 0;
   animation: fadeInUp 0.6s ease forwards;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition:
+    background 0.25s ease,
+    transform 0.18s ease,
+    border-color 0.25s ease;
 }
 
 .feature:hover {
-  background: #ebebeb;
-  transform: translateX(8px);
+  background: #ededed;
+  transform: translateY(-4px);
+  border-left-color: var(--color-metric);
 }
 
 .feature:nth-child(1) {
@@ -119,6 +123,15 @@
   font-family: var(--font-roboto-regular);
   font-size: clamp(15px, 1.9vw, 18px);
   line-height: 1.6;
+  color: var(--color-bg);
+  transition: color 0.25s ease;
+}
+
+.feature:hover .featureNum {
+  color: var(--color-metric);
+}
+
+.feature:hover .featureText {
   color: var(--color-bg);
 }
 

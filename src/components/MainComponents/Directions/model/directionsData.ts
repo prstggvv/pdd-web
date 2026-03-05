@@ -1,47 +1,60 @@
 import SimferopolImage from '../../../../shared/assets/images/projects/simferopol.webp';
-import SimferopolHoverImage from '../../../../shared/assets/images/projects/simferopolwork.png';
 import YaltaImage from '../../../../shared/assets/images/projects/yalta.webp';
-import YaltaHoverImage from '../../../../shared/assets/images/projects/yaltawork.png';
 import PheodosiaImage from '../../../../shared/assets/images/projects/pheodosia.jpg';
-import PheodosiaHoverImage from '../../../../shared/assets/images/projects/pheodosiawork.png';
 import KerchImage from '../../../../shared/assets/images/projects/kerch.webp';
-import KerchHoverImage from '../../../../shared/assets/images/projects/kerchwork.png';
+import Photo1 from '../../../../shared/assets/images/photos/first.jpg';
+import Photo2 from '../../../../shared/assets/images/photos/second.jpg';
+import Photo3 from '../../../../shared/assets/images/photos/signs.jpg';
+import Photo4 from '../../../../shared/assets/images/photos/object.jpg';
+import Photo5 from '../../../../shared/assets/images/photos/markings.jpg';
+import Photo6 from '../../../../shared/assets/images/photos/plastica.jpg';
+import Photo7 from '../../../../shared/assets/images/photos/nerovnost.jpg';
+import Photo8 from '../../../../shared/assets/images/photos/1222222.jpg';
+import Photo9 from '../../../../shared/assets/images/photos/123213123.jpg';
+import Photo10 from '../../../../shared/assets/images/photos/11.jpg';
+import Photo11 from '../../../../shared/assets/images/photos/done.jpg';
 
-interface IDirectionsDataProps {
+export interface IDirectionsDataProps {
   id: string;
   title: string;
   subtitle: string;
+  description: string;
   defaultImage: string;
-  hoverImage: string;
+  /** Ровно 5 фото для карусели в попапе — один слайд = одно фото */
+  galleryImages: string[];
 }
 
 export const directionsData: IDirectionsDataProps[] = [
   {
-    id: 'boxing',
+    id: 'simferopol',
     title: 'г. Симферополь',
-    subtitle: 'Разработка постоянной схемы Устройство примыкания парковки к автомобильной дороге общего пользования местного значения',
+    subtitle: 'Разработка постоянной схемы',
+    description: 'Устройство примыкания парковки к автомобильной дороге общего пользования местного значения. Реализованы работы по разработке постоянной схемы организации дорожного движения.',
     defaultImage: SimferopolImage,
-    hoverImage: SimferopolHoverImage,
+    galleryImages: [Photo1, Photo2, Photo3, Photo4, Photo5],
   },
   {
-    id: 'kickboxing',
+    id: 'yalta',
     title: 'г. Ялта',
-    subtitle: 'Разработка проектной схемы ОДД торгового центра',
+    subtitle: 'Разработка проектной схемы ОДД',
+    description: 'Разработка проектной схемы организации дорожного движения торгового центра. Включает размещение знаков, разметки и светофорного оборудования.',
     defaultImage: YaltaImage,
-    hoverImage: YaltaHoverImage,
+    galleryImages: [Photo3, Photo4, Photo5, Photo6, Photo7],
   },
   {
-    id: 'mma',
+    id: 'feodosiya',
     title: 'г. Феодосия',
-    subtitle: 'Строительство и эксплуатация автозаправочной станции", в полосе отвода автомобильной дороги',
+    subtitle: 'Строительство АЗС',
+    description: 'Строительство и эксплуатация автозаправочной станции в полосе отвода автомобильной дороги. Выполнены проектные и монтажные работы.',
     defaultImage: PheodosiaImage,
-    hoverImage: PheodosiaHoverImage,
+    galleryImages: [Photo5, Photo6, Photo7, Photo8, Photo9],
   },
   {
-    id: 'bjj',
+    id: 'kerch',
     title: 'г. Керчь',
-    subtitle: 'Разработка временной схемы на период производства строительно-монтажных работ',
+    subtitle: 'Временная схема ОДД',
+    description: 'Разработка временной схемы на период производства строительно-монтажных работ. Обеспечена безопасность движения на объекте.',
     defaultImage: KerchImage,
-    hoverImage: KerchHoverImage,
-  }
+    galleryImages: [Photo7, Photo8, Photo9, Photo10, Photo11],
+  },
 ];
