@@ -16,7 +16,7 @@ export interface ChatMessage {
 
 const INITIAL_MESSAGE: ChatMessage = {
   id: '0',
-  text: 'Здравствуйте! Чем я могу вам помочь?',
+  text: 'Здравствуйте, я ИИ консультант, постараюсь ответить на ваши вопросы! Чем я могу вам помочь?',
   from: 'consultant',
 };
 
