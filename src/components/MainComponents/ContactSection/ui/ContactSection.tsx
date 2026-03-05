@@ -157,10 +157,16 @@ export const ContactSection = ({ className }: IContactSectionProps) => {
                 <div className={classNames(cls.contactBody, {}, [])}>
                   <span className={classNames(cls.contactLabel, {}, [])}>Телефон</span>
                   <a
-                    href='tel:+79782176422'
+                    href='tel:+79816986397'
                     className={classNames(cls.contactValue, {}, [])}
                   >
-                    +7 (978) 217 64 22
+                    +7 (981) 698 63 97
+                  </a>
+                  <a
+                    href='tel:+79119950349'
+                    className={classNames(cls.contactValue, {}, [])}
+                  >
+                    +7 (911) 995 03 49
                   </a>
                   <span className={classNames(cls.contactHint, {}, [])}>Ежедневно с 9:00 до 18:00</span>
                 </div>
@@ -174,10 +180,10 @@ export const ContactSection = ({ className }: IContactSectionProps) => {
                 <div className={classNames(cls.contactBody, {}, [])}>
                   <span className={classNames(cls.contactLabel, {}, [])}>Почта</span>
                   <a
-                    href='mailto:trafsaf@yandex.ru'
+                    href='mailto:kodd_crimea@mail.ru'
                     className={classNames(cls.contactValue, {}, [])}
                   >
-                    trafsaf@yandex.ru
+                    kodd_crimea@mail.ru
                   </a>
                   <span className={classNames(cls.contactHint, {}, [])}>Ответим в течение рабочего дня</span>
                 </div>

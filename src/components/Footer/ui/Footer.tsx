@@ -1,7 +1,6 @@
 import cls from './Footer.module.css';
 import { classNames } from '../../../shared/lib/classNames/classNames';
 import MaxSvg from '../../../shared/assets/images/icons/footer/max.svg';
-import MaxDarkSvg from '../../../shared/assets/images/icons/footer/max_dark.svg';
 
 interface IFooterProps {
   className?: string;

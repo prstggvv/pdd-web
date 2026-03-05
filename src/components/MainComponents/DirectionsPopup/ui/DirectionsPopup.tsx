@@ -65,6 +65,13 @@ export const DirectionsPopup = ({ isOpen, direction, onClose }: IDirectionsPopup
   }, [isOpen, onClose]);
 
   useEffect(() => {
+    if (direction) {
+      setSlideIndex(0);
+      setTrackOffset(0);
+    }
+  }, [direction?.id]);
+
+  useEffect(() => {
     if (!isOpen || !direction) return;
     const el = wrapRef.current;
     if (!el) return;
@@ -144,11 +151,13 @@ export const DirectionsPopup = ({ isOpen, direction, onClose }: IDirectionsPopup
                     onTouchEnd={handleTouchEnd}
                   >
                     <motion.div
+                      key={direction.id}
                       className={cls.sliderTrack}
                       style={{
                         width: `${slideCount * 100}%`,
                         ['--slides' as string]: slideCount,
                       }}
+                      initial={{ x: 0 }}
                       animate={{ x: trackOffset }}
                       transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
                       role="region"
