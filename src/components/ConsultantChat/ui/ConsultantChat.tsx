@@ -89,18 +89,35 @@ export const ConsultantChat = () => {
       const reply =
         extractReply(res) ??
         'Принято. Чем ещё могу помочь?';
+
+      // Завершаем первую "печать" и показываем ответ
+      setIsTyping(false);
+      const replyId = `r-${Date.now()}`;
       setMessages((prev) => [
         ...prev,
-        { id: `r-${Date.now()}`, text: reply, from: 'consultant' },
-        {
-          id: `h-${Date.now() + 1}`,
-          text: 'Чем ещё могу помочь?',
-          from: 'consultant',
-        },
+        { id: replyId, text: reply, from: 'consultant' },
       ]);
       if (!panelVisibleRef.current) {
         setUnreadCount((c) => c + 1);
       }
+
+      // Ждём 1 секунду
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      // Вторая "печать" консультанта
+      setIsTyping(true);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      // Добавляем дополнительное сообщение "Чем ещё могу помочь?"
+      setIsTyping(false);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: `h-${Date.now()}`,
+          text: 'Чем ещё могу помочь?',
+          from: 'consultant',
+        },
+      ]);
     } catch {
       setMessages((prev) => [
         ...prev,
@@ -110,7 +127,6 @@ export const ConsultantChat = () => {
           from: 'consultant',
         },
       ]);
-    } finally {
       setIsTyping(false);
     }
   };
