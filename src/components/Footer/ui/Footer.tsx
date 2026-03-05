@@ -1,5 +1,7 @@
 import cls from './Footer.module.css';
 import { classNames } from '../../../shared/lib/classNames/classNames';
+import MaxSvg from '../../../shared/assets/images/icons/footer/max.svg';
+import MaxDarkSvg from '../../../shared/assets/images/icons/footer/max_dark.svg';
 
 interface IFooterProps {
   className?: string;
@@ -43,12 +45,17 @@ export const Footer = ({ className }: IFooterProps) => {
             tabIndex={0}
             onKeyDown={handleKeyDownLink}
           >
-            <span className={classNames(cls.iconMaks, {}, [])} aria-hidden="true">M</span>
+            <img
+              className={classNames(cls.iconMaks, {}, [])}
+              aria-hidden="true"
+              src={MaxSvg}
+              alt='#'
+            />
           </a>
         </div>
       </div>
       <div className={classNames(cls.copyright, {}, [])}>
-        © 2022 ООО «Дорожная Безопасность»
+        © 2022 ООО «КОДД»
       </div>
     </footer>
   );

@@ -130,6 +130,8 @@ export const ConsultantChat = () => {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
+      const trimmed = inputValue.trim();
+      if (!trimmed || isTyping) return;
       handleSend();
     }
   };
@@ -198,6 +200,7 @@ export const ConsultantChat = () => {
                   className={cls.sendBtn}
                   onClick={handleSend}
                   aria-label="Отправить"
+                  disabled={isTyping || !inputValue.trim()}
                 >
                   Отправить
                 </button>
