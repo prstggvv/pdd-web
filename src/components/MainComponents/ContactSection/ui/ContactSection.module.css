@@ -210,6 +210,52 @@ a.contactValue:focus {
   cursor: not-allowed;
 }
 
+.formNotification {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-family: var(--font-roboto-regular);
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.formNotificationSuccess {
+  background: rgba(46, 204, 113, 0.15);
+  color: var(--color-metric);
+  border: 1px solid rgba(46, 204, 113, 0.4);
+}
+
+.formNotificationError {
+  background: rgba(192, 57, 43, 0.1);
+  color: #c0392b;
+  border: 1px solid rgba(192, 57, 43, 0.35);
+}
+
+.formNotificationIcon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.formNotificationSuccess .formNotificationIcon {
+  background: var(--color-metric);
+  color: #fff;
+}
+
+.formNotificationError .formNotificationIcon {
+  background: #c0392b;
+  color: #fff;
+}
+
 .formActions {
   display: flex;
   align-items: center;

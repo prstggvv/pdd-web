@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import cls from './ContactSection.module.css';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
 import Titles from '../../../../shared/ui/Titles/Titles';
@@ -240,6 +240,32 @@ export const ContactSection = ({ className }: IContactSectionProps) => {
                     required
                   />
                 </div>
+                <AnimatePresence mode="wait">
+                  {(status === 'success' || status === 'error') && (
+                    <motion.div
+                      key={status}
+                      className={classNames(cls.formNotification, {}, [
+                        status === 'success' ? cls.formNotificationSuccess : cls.formNotificationError,
+                      ])}
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -4 }}
+                      transition={{ duration: 0.25, ease: 'easeOut' }}
+                    >
+                      {status === 'success' ? (
+                        <>
+                          <span className={cls.formNotificationIcon} aria-hidden>✓</span>
+                          <span>Заявка отправлена</span>
+                        </>
+                      ) : (
+                        <>
+                          <span className={cls.formNotificationIcon} aria-hidden>!</span>
+                          <span>{submitError || 'Не удалось отправить заявку'}</span>
+                        </>
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
                 <div className={cls.formActions}>
                   <button
                     type="submit"
@@ -248,12 +274,6 @@ export const ContactSection = ({ className }: IContactSectionProps) => {
                   >
                     {status === 'sending' ? 'Отправка…' : 'Отправить заявку'}
                   </button>
-                  {status === 'success' && (
-                    <span className={cls.formSuccess}>Заявка отправлена.</span>
-                  )}
-                  {status === 'error' && submitError && (
-                    <span className={cls.formError}>{submitError}</span>
-                  )}
                 </div>
               </Form>
             </div>
