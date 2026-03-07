@@ -19,7 +19,7 @@ export interface IPhotoItem {
 
 export const PHOTOS_DATA: IPhotoItem[] = [
   { id: 'photo-1', title: 'Установка дорожных знаков', imageUrl: Photo1 },
-  { id: 'photo-2', title: 'Работы на участке', imageUrl: Photo2 },
+  { id: 'photo-2', title: 'Ростверк ШЗЭ', imageUrl: Photo2 },
   { id: 'photo-3', title: 'Производство дорожных знаков', imageUrl: Photo3 },
   { id: 'photo-4', title: 'Сдача объекта', imageUrl: Photo4 },
   { id: 'photo-5', title: 'Нанесение разметки', imageUrl: Photo5 },
@@ -29,5 +29,5 @@ export const PHOTOS_DATA: IPhotoItem[] = [
   { id: 'photo-9', title: 'Подготовка светофорного оборудования', imageUrl: Photo9 },
   { id: 'photo-10', title: 'Дорожные конусы', imageUrl: Photo10 },
   { id: 'photo-12', title: 'Сдача результата', imageUrl: Photo11 },
-  { id: 'photo-13', title: 'Подготовка объекта', imageUrl: Photo12 }
+  { id: 'photo-13', title: 'Монтаж фундамента дорожных знаков', imageUrl: Photo12 }
 ];
