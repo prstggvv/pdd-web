@@ -85,6 +85,10 @@
   letter-spacing: 0.08em;
 }
 
+.item:nth-child(2n) .number {
+  color: var(--color-accent);
+}
+
 .list::before {
   content: "";
   position: absolute;
@@ -105,6 +109,15 @@
   border-radius: 50%;
   background: var(--color-metric);
   box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.28);
+}
+
+.item:nth-child(2n)::before {
+  background: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(230, 126, 34, 0.32);
+}
+
+.item:nth-child(2n):hover {
+  border-color: rgba(230, 126, 34, 0.55);
 }
 
 .heading {
