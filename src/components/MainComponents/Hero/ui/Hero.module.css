@@ -84,12 +84,16 @@
   letter-spacing: 0.03em;
 }
 
-.ctaWrap {
+.ctaBlock {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 12px;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.ctaBlock .spanAccent {
+  margin-top: 0;
 }
 
 .ctaLink {
@@ -261,7 +265,7 @@
     width: 100%;
   }
 
-  .ctaWrap {
+  .ctaBlock {
     order: 1;
     margin-top: auto;
     padding-top: clamp(20px, 4vw, 28px);

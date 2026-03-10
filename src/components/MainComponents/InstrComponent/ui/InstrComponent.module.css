@@ -43,9 +43,10 @@
 }
 
 .list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: clamp(14px, 2vw, 20px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 2.4vw, 22px);
   align-items: stretch;
   list-style: none;
   padding: 0;
@@ -58,8 +59,8 @@
   gap: 15px;
   position: relative;
   width: 100%;
-  height: 100%;
-  padding: clamp(12px, 1.8vw, 18px);
+  min-height: 0;
+  padding: clamp(14px, 2vw, 18px) clamp(16px, 3vw, 22px) clamp(16px, 2.4vw, 20px) 64px;
   box-sizing: border-box;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 10px;
@@ -73,6 +74,7 @@
 }
 
 .number {
+  position: relative;
   font-family: var(--font-cera-pro-medium);
   color: var(--color-metric);
   opacity: 0.95;
@@ -81,6 +83,28 @@
   line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+}
+
+.list::before {
+  content: "";
+  position: absolute;
+  left: 30px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+}
+
+.item::before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: 26px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-metric);
+  box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.28);
 }
 
 .heading {
@@ -208,7 +232,6 @@
   }
 }
 
-/* Extra small mobile */
 @media screen and (max-width: 360px) {
   .container {
     padding: 16px 12px;

@@ -44,7 +44,7 @@ export const Directions = ({ className }: IDirectionsProps) => {
       >
         <Titles
           uptitle="Наши проекты"
-          title="То, что мы реализовали"
+          title="То, что мы реализовали:"
           dark={true}
           className={classNames(cls.titles, {}, [])}
         />

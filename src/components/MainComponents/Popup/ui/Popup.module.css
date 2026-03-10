@@ -21,6 +21,17 @@
   flex-direction: column;
 }
 
+.modalForm {
+  background: #e8e8e8;
+  max-width: min(520px, 100%);
+}
+
+.modalBody {
+  padding: 0;
+  overflow-y: auto;
+  max-height: calc(92vh - 56px);
+}
+
 .closeBtn {
   position: absolute;
   top: 10px;

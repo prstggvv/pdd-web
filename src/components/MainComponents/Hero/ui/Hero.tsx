@@ -1,21 +1,25 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import cls from './Hero.module.css';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
 import LogoSvg from '../../../../shared/assets/images/icons/logo.svg';
-import { scrollToSection } from '../../../../shared/lib/scrollToSection/scrollToSection';
+import { Popup } from '../../Popup';
+import { ContactForm } from '../../../../shared/ui/ContactForm';
 
 interface IHeroProps {
   className?: string;
 }
 
-const handleKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
+const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
   if (e.key === 'Enter' || e.key === ' ') {
     e.preventDefault();
-    (e.currentTarget as HTMLAnchorElement).click();
+    (e.currentTarget as HTMLButtonElement).click();
   }
 };
 
 export const Hero = ({ className }: IHeroProps) => {
+  const [formOpen, setFormOpen] = useState(false);
+
   return (
     <motion.section
       id='hero'
@@ -48,40 +52,32 @@ export const Hero = ({ className }: IHeroProps) => {
             >
               Обустройство дорожной инфраструктуры
             </motion.span>
-            <motion.span
-              className={classNames(cls.spanAccent, {}, [])}
-              initial={{ opacity: 0, y: 18 }}
+            <motion.div
+              className={classNames(cls.ctaBlock, {}, [])}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6, ease: 'easeOut' }}
             >
-              под ключ без срывов и переделок
-            </motion.span>
-          </h1>
-          <motion.div
-            className={classNames(cls.ctaWrap, {}, [])}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.85, ease: 'easeOut' }}
-          >
-            <a
-              href="#contacts"
-              className={classNames(cls.ctaLink, {}, [])}
-              tabIndex={0}
-              aria-label="Записаться"
-              onKeyDown={handleKeyDown}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection('contacts');
-              }}
-            >
-              <span className={classNames(cls.ctaText, {}, [])}>Записаться</span>
-              <span className={classNames(cls.ctaArrow, {}, [])} aria-hidden>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 5v14M7 12l5 5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+              <button
+                type="button"
+                className={classNames(cls.ctaLink, {}, [])}
+                tabIndex={0}
+                aria-label="Оставить заявку"
+                onKeyDown={handleKeyDown}
+                onClick={() => setFormOpen(true)}
+              >
+                <span className={classNames(cls.ctaText, {}, [])}>Оставить заявку</span>
+                <span className={classNames(cls.ctaArrow, {}, [])} aria-hidden>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5v14M7 12l5 5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              </button>
+              <span className={classNames(cls.spanAccent, {}, [])}>
+                под ключ без срывов и переделок
               </span>
-            </a>
-          </motion.div>
+            </motion.div>
+          </h1>
           <motion.div
             className={classNames(cls.content, {}, [])}
             initial={{ opacity: 0, y: 20 }}
@@ -104,6 +100,14 @@ export const Hero = ({ className }: IHeroProps) => {
           </motion.div>
         </motion.div>
       </div>
+
+      <Popup
+        isOpen={formOpen}
+        onClose={() => setFormOpen(false)}
+        title="Оставить заявку"
+      >
+        <ContactForm onSuccess={() => setFormOpen(false)} />
+      </Popup>
     </motion.section>
-  )
+  );
 };
