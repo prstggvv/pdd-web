@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import cls from './AboutSection.module.css';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
 import Titles from '../../../../shared/ui/Titles/Titles';
+import { LeadCapture } from '../../LeadCapture';
 
 interface IAboutSectionProps {
   className?: string;
@@ -71,6 +72,9 @@ export const AboutSection = ({ className }: IAboutSectionProps) => {
                 ООО{'\u00A0'}«Кедр»
               </a>{'\u00A0'}и другими компаниями.
             </motion.p>
+            <div className={cls.leadCaptureWrap}>
+              <LeadCapture />
+            </div>
           </div>
           <motion.ul
             className={classNames(cls.features, {}, [])}

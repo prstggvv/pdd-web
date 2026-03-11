@@ -4,6 +4,7 @@ import { classNames } from '../../../../shared/lib/classNames/classNames';
 import { scrollToSection } from '../../../../shared/lib/scrollToSection/scrollToSection';
 import { instrComponentData } from '../model/instrComponentData';
 import Titles from '../../../../shared/ui/Titles/Titles';
+import { LeadCapture } from '../../LeadCapture';
 
 interface IInstrComponentProps {
   className?: string;
@@ -53,6 +54,9 @@ export const InstrComponent = ({ className }: IInstrComponentProps) => {
           >
             Предсказуемый процесс работы — 5 шагов от анализа до реализации
           </motion.p>
+          <div className={cls.leadCaptureWrap}>
+            <LeadCapture variant="lightOnDark" />
+          </div>
           <motion.ul
             className={classNames(cls.list, {}, [])}
             variants={listVariants}
@@ -73,20 +77,6 @@ export const InstrComponent = ({ className }: IInstrComponentProps) => {
               </motion.li>
             ))}
           </motion.ul>
-          <motion.a
-            href="#product"
-            className={classNames(cls.cta, {}, [])}
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('product');
-            }}
-          >
-            Подробнее
-          </motion.a>
         </motion.div>
       </div>
     </section>

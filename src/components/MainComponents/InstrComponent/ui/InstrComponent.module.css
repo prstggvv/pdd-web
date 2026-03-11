@@ -154,6 +154,10 @@
   margin: 0;
 }
 
+.leadCaptureWrap {
+  margin-top: 12px;
+}
+
 .cta:hover,
 .cta:focus {
   background-color: var(--color-text);

@@ -24,6 +24,10 @@
   gap: clamp(28px, 4vw, 44px);
 }
 
+.leadCaptureWrap {
+  margin-top: 8px;
+}
+
 .textBlock {
   display: flex;
   flex-direction: column;

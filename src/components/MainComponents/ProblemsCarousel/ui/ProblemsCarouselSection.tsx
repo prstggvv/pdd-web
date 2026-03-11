@@ -5,6 +5,7 @@ import cls from './ProblemsCarouselSection.module.css';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
 import Titles from '../../../../shared/ui/Titles/Titles';
 import { scrollToSection } from '../../../../shared/lib/scrollToSection/scrollToSection';
+import { LeadCapture } from '../../LeadCapture';
 import {
   CAROUSEL_SLIDES,
   PROBLEMS_LIST,
@@ -98,22 +99,9 @@ export const ProblemsCarouselSection = ({ className }: IProblemsCarouselSectionP
               </li>
             ))}
           </motion.ul>
-          <motion.a
-            href="#product"
-            className={classNames(cls.cta, {}, [])}
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('product');
-            }}
-          >
-            Подробнее
-          </motion.a>
+          <div className={cls.leadCaptureWrap}>
+            <LeadCapture variant="lightOnDark" />
+          </div>
         </motion.div>
 
         <motion.div

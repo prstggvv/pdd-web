@@ -12,6 +12,10 @@
   gap: clamp(40px, 6vw, 64px);
 }
 
+.leadCaptureWrap {
+  margin-top: 8px;
+}
+
 .titles {
   margin-bottom: 0;
 }

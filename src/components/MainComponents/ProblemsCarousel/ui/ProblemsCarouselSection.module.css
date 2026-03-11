@@ -65,6 +65,10 @@
   outline-offset: 2px;
 }
 
+.leadCaptureWrap {
+  margin-top: 12px;
+}
+
 .carouselColumn {
   display: flex;
   flex-direction: column;

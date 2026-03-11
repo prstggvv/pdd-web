@@ -4,6 +4,7 @@ import { classNames } from '../../../../shared/lib/classNames/classNames';
 import { scrollToSection } from '../../../../shared/lib/scrollToSection/scrollToSection';
 import Titles from '../../../../shared/ui/Titles/Titles';
 import { PRODUCT_CARDS, PRODUCT_INTRO } from '../model/productSectionData';
+import { LeadCapture } from '../../LeadCapture';
 
 interface IProductSectionProps {
   className?: string;
@@ -49,20 +50,9 @@ export const ProductSection = ({ className }: IProductSectionProps) => {
             className={classNames(cls.titles, {}, [])}
           />
           <p className={classNames(cls.introText, {}, [])}>{PRODUCT_INTRO}</p>
-          <a
-            href="#contacts"
-            className={classNames(cls.ctaLink, {}, [])}
-            tabIndex={0}
-            aria-label="Оставить заявку"
-            onKeyDown={handleKeyDown}
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('contacts');
-            }}
-          >
-            <span className={classNames(cls.ctaText, {}, [])}>Оставить заявку</span>
-            <span className={classNames(cls.ctaArrow, {}, [])}>→</span>
-          </a>
+          <div className={cls.leadCaptureWrap}>
+            <LeadCapture />
+          </div>
         </motion.div>
 
         <motion.div
