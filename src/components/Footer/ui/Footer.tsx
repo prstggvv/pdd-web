@@ -1,6 +1,7 @@
 import cls from './Footer.module.css';
 import { classNames } from '../../../shared/lib/classNames/classNames';
 import MaxSvg from '../../../shared/assets/images/icons/footer/max.svg';
+import { footerSocialLinks } from '../model/footerData';
 
 interface IFooterProps {
   className?: string;
@@ -24,37 +25,37 @@ export const Footer = ({ className }: IFooterProps) => {
           </address>
         </div>
         <div className={classNames(cls.col, {}, [cls.colSocial])}>
-          <a
-            href="https://t.me/example"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={classNames(cls.socialLink, {}, [])}
-            aria-label="Telegram"
-            tabIndex={0}
-            onKeyDown={handleKeyDownLink}
-          >
-            <span className={classNames(cls.iconTelegram, {}, [])} aria-hidden="true" />
-          </a>
-          <a
-            href="https://maks.one/example"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={classNames(cls.socialLink, {}, [])}
-            aria-label="Макс"
-            tabIndex={0}
-            onKeyDown={handleKeyDownLink}
-          >
-            <img
-              className={classNames(cls.iconMaks, {}, [])}
-              aria-hidden="true"
-              src={MaxSvg}
-              alt='#'
-            />
-          </a>
+          {footerSocialLinks.map((link) => (
+            <a
+              key={link.id}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={classNames(cls.socialLink, {}, [])}
+              aria-label={link.label}
+              tabIndex={0}
+              onKeyDown={handleKeyDownLink}
+            >
+              {link.id === 'telegram' && (
+                <span className={classNames(cls.iconTelegram, {}, [])} aria-hidden="true" />
+              )}
+              {link.id === 'vk' && (
+                <span className={classNames(cls.iconVk, {}, [])} aria-hidden="true" />
+              )}
+              {link.id === 'max' && (
+                <img
+                  className={classNames(cls.iconMaks, {}, [])}
+                  aria-hidden="true"
+                  src={MaxSvg}
+                  alt=""
+                />
+              )}
+            </a>
+          ))}
         </div>
-      </div>
-      <div className={classNames(cls.copyright, {}, [])}>
-        © 2022 ООО «КОДД»
+        <div className={classNames(cls.copyright, {}, [])}>
+          © 2022 ООО «КОДД»
+        </div>
       </div>
     </footer>
   );

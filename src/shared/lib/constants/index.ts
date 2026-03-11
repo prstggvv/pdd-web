@@ -4,7 +4,7 @@ export const YANDEX_MAP_SRC =
 /** Куда отправлять заявки с формы контактов (n8n webhook) */
 export const CONTACT_FORM_WEBHOOK_URL =
   (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_CONTACT_FORM_WEBHOOK) ||
-  'https://n8botpars.ru/webhook-test/form-lead';
+  'https://n8botpars.ru/webhook/form-lead';
 
 /** Email получателя заявок */
 export const CONTACT_FORM_EMAIL = 'vany4golos@yandex.ru';

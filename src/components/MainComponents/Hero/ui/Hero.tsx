@@ -106,7 +106,7 @@ export const Hero = ({ className }: IHeroProps) => {
         onClose={() => setFormOpen(false)}
         title="Оставить заявку"
       >
-        <ContactForm onSuccess={() => setFormOpen(false)} />
+        <ContactForm />
       </Popup>
     </motion.section>
   );

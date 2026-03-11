@@ -1,6 +1,6 @@
 import { Api } from './Api';
 
-const CONSULTANT_WEBHOOK_PATH = '/webhook-test/semantic-search';
+const CONSULTANT_WEBHOOK_PATH = '/webhook/semantic-search';
 
 export type ConsultantWebhookPayload = {
   message: string;
