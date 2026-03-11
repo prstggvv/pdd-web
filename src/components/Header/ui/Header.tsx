@@ -35,15 +35,6 @@ const itemVariants = {
   },
 };
 
-const navItemVariants = {
-  hidden: { opacity: 0, y: -5 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.55, ease: [0.22, 0.61, 0.36, 1] as const },
-  },
-};
-
 interface IHeaderData {
   className?: string;
 }
@@ -68,26 +59,6 @@ export const Header = ({ className }: IHeaderData) => {
     }
   }, []);
 
-  const handleSmoothScroll = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
-    const href = e.currentTarget.getAttribute('href');
-    if (!href || !href.startsWith('#')) return;
-
-    e.preventDefault();
-    const targetId = href.slice(1);
-    const targetElement = document.getElementById(targetId);
-
-    if (targetElement && headerRef.current) {
-      const headerHeight = headerRef.current.offsetHeight;
-      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-
-      window.scrollTo({
-        top: Math.max(0, targetPosition),
-        behavior: 'smooth',
-      });
-    }
-    setMenuOpen(false);
-  }, []);
-
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
@@ -102,7 +73,6 @@ export const Header = ({ className }: IHeaderData) => {
       <header
         ref={headerRef}
         className={classNames(cls.header, { [cls.scrolled]: scrolled }, [className ?? ''])}
-        style={menuOpen ? { zIndex: 1001 } : undefined}
       >
         <motion.div
           className={classNames(cls.container, {}, [])}
@@ -122,43 +92,17 @@ export const Header = ({ className }: IHeaderData) => {
           >
             <span className={classNames(cls.logoText, {}, [])}>КОДД</span>
           </motion.a>
-          <motion.nav
-            className={classNames(cls.nav, {}, [])}
-            variants={itemVariants}
-          >
-            {NAV_ITEMS.map((item) => (
-              <motion.a
-                key={item.href}
-                href={item.href}
-                className={classNames(cls.link, {}, [])}
-                onClick={handleSmoothScroll}
-                variants={navItemVariants}
-              >
-                {item.label}
-              </motion.a>
-            ))}
-          </motion.nav>
-          <motion.div
-            className={classNames(cls.contact, {}, [])}
-            variants={itemVariants}
-          >
-            <a href='tel:+79782176422' className={classNames(cls.contactLink, {}, [])}>
-              +7 (978) 217 64 22
-            </a>
-            <a href='mailto:trafsaf@yandex.ru' className={classNames(cls.contactLink, {}, [])}>
-              trafsaf@yandex.ru
-            </a>
-          </motion.div>
-          <motion.div variants={itemVariants}>
-            <BurgerButton
-              className={classNames(cls.button, {}, [])}
-              menuOpen={menuOpen}
-              handleBurgerClick={handleBurgerClick}
-              handleKeyDown={handleKeyDown}
-            />
-          </motion.div>
+          <div className={cls.burgerPlaceholder} aria-hidden />
         </motion.div>
       </header>
+      <div className={cls.burgerLayer}>
+        <BurgerButton
+          className={classNames(cls.button, {}, [])}
+          menuOpen={menuOpen}
+          handleBurgerClick={handleBurgerClick}
+          handleKeyDown={handleKeyDown}
+        />
+      </div>
       <NavMenu
         isOpen={menuOpen}
         onClose={handleNavLinkClick}

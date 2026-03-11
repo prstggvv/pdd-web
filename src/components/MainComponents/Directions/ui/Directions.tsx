@@ -1,22 +1,39 @@
+import { useCallback, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import cls from './Directions.module.css';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
-import { directionsData } from '../model/directionsData';
+import { directionsData, type IDirectionsDataProps } from '../model/directionsData';
 import Titles from '../../../../shared/ui/Titles/Titles';
+import { DirectionsPopup } from '../../DirectionsPopup';
 
 interface IDirectionsProps {
   className?: string;
 }
 
-const panelVariants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0 },
-};
-
 export const Directions = ({ className }: IDirectionsProps) => {
+  const [selectedDirection, setSelectedDirection] = useState<IDirectionsDataProps | null>(null);
+
+  const panelVariants = useMemo(
+    () => ({
+      hidden: { opacity: 0, y: 28 },
+      visible: { opacity: 1, y: 0 },
+    }),
+    []
+  );
+
+  const handleClose = useCallback(() => {
+    setSelectedDirection(null);
+  }, []);
+
+  const handleOpen = useCallback((direction: IDirectionsDataProps) => {
+    setSelectedDirection(direction);
+  }, []);
+
+  const isPopupOpen = !!selectedDirection;
+
   return (
     <section
-      id='projects'
+      id="projects"
       className={classNames(cls.section, {}, [className ?? ''])}
     >
       <motion.div
@@ -26,8 +43,8 @@ export const Directions = ({ className }: IDirectionsProps) => {
         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
         <Titles
-          uptitle='Наши проекты'
-          title='То что мы реализовали'
+          uptitle="Наши проекты"
+          title="То, что мы реализовали:"
           dark={true}
           className={classNames(cls.titles, {}, [])}
         />
@@ -38,12 +55,20 @@ export const Directions = ({ className }: IDirectionsProps) => {
             key={direction.id}
             className={classNames(cls.panel, {}, [])}
             tabIndex={0}
-            aria-label={direction.title}
+            role="button"
+            aria-label={`${direction.title}. Открыть подробнее`}
             variants={panelVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.12 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
+            onClick={() => handleOpen(direction)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleOpen(direction);
+              }
+            }}
           >
             <div className={classNames(cls.imageWrapper, {}, [])}>
               <img
@@ -51,23 +76,21 @@ export const Directions = ({ className }: IDirectionsProps) => {
                 alt={direction.title}
                 className={classNames(cls.defaultImage, {}, [])}
               />
-              <img
-                src={direction.hoverImage}
-                alt={direction.title}
-                className={classNames(cls.hoverImage, {}, [])}
-              />
             </div>
             <div className={classNames(cls.textWrapper, {}, [])}>
               <h3 className={classNames(cls.panelTitle, {}, [])}>
                 {direction.title}
               </h3>
-              <p className={classNames(cls.panelSubtitle, {}, [])}>
-                {direction.subtitle}
-              </p>
             </div>
           </motion.li>
         ))}
       </ul>
+
+      <DirectionsPopup
+        isOpen={isPopupOpen}
+        direction={selectedDirection}
+        onClose={handleClose}
+      />
     </section>
   );
 };

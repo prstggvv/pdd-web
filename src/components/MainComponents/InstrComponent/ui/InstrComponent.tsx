@@ -51,8 +51,7 @@ export const InstrComponent = ({ className }: IInstrComponentProps) => {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.4, delay: 0.12 }}
           >
-            Прозрачный процесс из 5 шагов: от анализа до сопровождения. Вы всегда понимаете, что
-            происходит на каждом этапе и кто отвечает за результат.
+            Предсказуемый процесс работы — 5 шагов от анализа до реализации
           </motion.p>
           <motion.ul
             className={classNames(cls.list, {}, [])}

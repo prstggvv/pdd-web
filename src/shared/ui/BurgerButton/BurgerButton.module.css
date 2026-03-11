@@ -1,5 +1,5 @@
 .burger {
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   width: 32px;
@@ -57,10 +57,6 @@
 }
 
 @media (max-width: 1083px) {
-  .burger {
-    display: flex;
-  }
-
   .mobileNav {
     display: flex;
     flex-direction: column;

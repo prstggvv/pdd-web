@@ -18,16 +18,16 @@ export interface IPhotoItem {
 }
 
 export const PHOTOS_DATA: IPhotoItem[] = [
-  { id: 'photo-1', title: 'Сдача знаков', imageUrl: Photo1 },
-  { id: 'photo-2', title: 'Работы на участке', imageUrl: Photo2 },
-  { id: 'photo-3', title: 'Монтаж знаков', imageUrl: Photo3 },
+  { id: 'photo-1', title: 'Установка дорожных знаков', imageUrl: Photo1 },
+  { id: 'photo-2', title: 'Ростверк ШЗЭ', imageUrl: Photo2 },
+  { id: 'photo-3', title: 'Производство дорожных знаков', imageUrl: Photo3 },
   { id: 'photo-4', title: 'Сдача объекта', imageUrl: Photo4 },
   { id: 'photo-5', title: 'Нанесение разметки', imageUrl: Photo5 },
   { id: 'photo-6', title: 'Производство элементов', imageUrl: Photo6 },
-  { id: 'photo-7', title: 'Искусственные неровности', imageUrl: Photo7 },
-  { id: 'photo-8', title: 'Контроль выполнения', imageUrl: Photo8 },
-  { id: 'photo-9', title: 'Подготовка светофоров', imageUrl: Photo9 },
-  { id: 'photo-10', title: 'Производство элементов', imageUrl: Photo10 },
+  { id: 'photo-7', title: 'Искусственные дорожные неровности', imageUrl: Photo7 },
+  { id: 'photo-8', title: 'Монтаж дорожных знаков', imageUrl: Photo8 },
+  { id: 'photo-9', title: 'Подготовка светофорного оборудования', imageUrl: Photo9 },
+  { id: 'photo-10', title: 'Дорожные конусы', imageUrl: Photo10 },
   { id: 'photo-12', title: 'Сдача результата', imageUrl: Photo11 },
-  { id: 'photo-13', title: 'Подготовка объекта', imageUrl: Photo12 }
+  { id: 'photo-13', title: 'Монтаж фундамента дорожных знаков', imageUrl: Photo12 }
 ];

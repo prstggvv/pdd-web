@@ -53,54 +53,23 @@ export const AboutSection = ({ className }: IAboutSectionProps) => {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.4, delay: 0.18 }}
             >
-              Мы обладаем опытом работы с ведущими подрядчиками региона:
-            </motion.p>
-            <motion.ul
-              className={classNames(cls.partnerList, {}, [])}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.4, delay: 0.22 }}
-            >
-              <li className={classNames(cls.partnerItem, {}, [])}>
-                <a
-                  href="https://zaovad.ru/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className={classNames(cls.partnerLink, {}, [])}
-                >
-                  АО «ВАД»
-                </a>
-              </li>
-              <li className={classNames(cls.partnerItem, {}, [])}>
-                <a
-                  href="https://baltmost.ru/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className={classNames(cls.partnerLink, {}, [])}
-                >
-                  ООО «Балтмостстрой»
-                </a>
-              </li>
-              <li className={classNames(cls.partnerItem, {}, [])}>
-                <a
-                  href="https://gas.crimea.ru/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className={classNames(cls.partnerLink, {}, [])}
-                >
-                  ГУП РК «Черноморнефтегаз»
-                </a>
-              </li>
-            </motion.ul>
-            <motion.p
-              className={classNames(cls.lead, {}, [])}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.4, delay: 0.26 }}
-            >
-              И другими компаниями. Знаем специфику крымских объектов, логистику и требования заказчиков.
+              Мы обладаем опытом работы с ведущими подрядчиками региона: {'\u00A0'}
+              <a
+                href="https://zaovad.ru/"
+                target="_blank"
+                rel="noreferrer"
+                className={classNames(cls.partnerLink, {}, [])}
+              >
+                АО{'\u00A0'}«ВАД»
+              </a>{'\u00A0'}
+              <a
+                href="https://zaovad.ru/"
+                target="_blank"
+                rel="noreferrer"
+                className={classNames(cls.partnerLink, {}, [])}
+              >
+                ООО{'\u00A0'}«Кедр»
+              </a>{'\u00A0'}и другими компаниями.
             </motion.p>
           </div>
           <motion.ul

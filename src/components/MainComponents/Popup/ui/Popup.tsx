@@ -5,20 +5,21 @@ import { classNames } from '../../../../shared/lib/classNames/classNames';
 
 interface IPopupProps {
   isOpen: boolean;
-  imageSrc: string;
-  imageAlt: string;
   onClose: () => void;
   title?: string;
+  /** Контент (например, форма). Если передан — показывается вместо фото; модал с серым фоном */
+  children?: React.ReactNode;
+  /** Фото: показывается, если children не передан */
+  imageSrc?: string;
+  imageAlt?: string;
 }
 
-export const Popup = ({ isOpen, imageSrc, imageAlt, onClose, title }: IPopupProps) => {
+export const Popup = ({ isOpen, onClose, title, children, imageSrc, imageAlt }: IPopupProps) => {
   useEffect(() => {
     if (!isOpen) return;
 
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
+      if (e.key === 'Escape') onClose();
     };
 
     const prevOverflow = document.body.style.overflow;
@@ -31,6 +32,8 @@ export const Popup = ({ isOpen, imageSrc, imageAlt, onClose, title }: IPopupProp
     };
   }, [isOpen, onClose]);
 
+  const isForm = Boolean(children);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -38,7 +41,7 @@ export const Popup = ({ isOpen, imageSrc, imageAlt, onClose, title }: IPopupProp
           className={classNames(cls.overlay, {}, [])}
           role="dialog"
           aria-modal="true"
-          aria-label={title ?? 'Просмотр фото'}
+          aria-label={title ?? (isForm ? 'Форма заявки' : 'Просмотр фото')}
           onClick={(e) => {
             if (e.target === e.currentTarget) onClose();
           }}
@@ -48,7 +51,7 @@ export const Popup = ({ isOpen, imageSrc, imageAlt, onClose, title }: IPopupProp
           transition={{ duration: 0.22, ease: 'easeOut' }}
         >
           <motion.div
-            className={classNames(cls.modal, {}, [])}
+            className={classNames(cls.modal, {}, [isForm ? cls.modalForm : ''])}
             initial={{ opacity: 0, scale: 0.94, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 18 }}
@@ -62,16 +65,26 @@ export const Popup = ({ isOpen, imageSrc, imageAlt, onClose, title }: IPopupProp
             >
               x
             </button>
-            <motion.img
-              src={imageSrc}
-              alt={imageAlt}
-              className={classNames(cls.image, {}, [])}
-              initial={{ opacity: 0.6, scale: 1.02 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0.7, scale: 1.01 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
-            />
-            {title && <p className={classNames(cls.caption, {}, [])}>{title}</p>}
+            {isForm ? (
+              <div className={cls.modalBody}>
+                {children}
+              </div>
+            ) : (
+              <>
+                {imageSrc && imageAlt && (
+                  <motion.img
+                    src={imageSrc}
+                    alt={imageAlt}
+                    className={classNames(cls.image, {}, [])}
+                    initial={{ opacity: 0.6, scale: 1.02 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0.7, scale: 1.01 }}
+                    transition={{ duration: 0.25, ease: 'easeOut' }}
+                  />
+                )}
+                {title && <p className={classNames(cls.caption, {}, [])}>{title}</p>}
+              </>
+            )}
           </motion.div>
         </motion.div>
       )}
