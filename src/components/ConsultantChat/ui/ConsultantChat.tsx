@@ -16,8 +16,37 @@ export interface ChatMessage {
 
 const INITIAL_MESSAGE: ChatMessage = {
   id: '0',
-  text: 'Здравствуйте, я ИИ консультант, постараюсь ответить на ваши вопросы! Чем я могу вам помочь?',
+  text: `Добрый день!
+Сергей, ООО «КОДД».
+Мы занимаемся комплексным обустройством дорог и схемами ОДД под ключ — от проектирования и согласования до поставки и монтажа. Чем я могу вам помочь?`,
   from: 'consultant',
+};
+
+const getOrCreateConsultantSessionId = (): string => {
+  if (typeof window === 'undefined') {
+    return 'anonymous';
+  }
+
+  const storageKey = 'consultant_session_id';
+  try {
+    const existing = window.localStorage.getItem(storageKey);
+    if (existing) return existing;
+  } catch {
+  }
+
+  const newId =
+    typeof window.crypto !== 'undefined' &&
+      typeof window.crypto.randomUUID === 'function'
+      ? window.crypto.randomUUID()
+      : `sess_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+
+  try {
+    window.localStorage.setItem(storageKey, newId);
+  } catch {
+
+  }
+
+  return newId;
 };
 
 export const ConsultantChat = () => {
@@ -27,6 +56,7 @@ export const ConsultantChat = () => {
   const [inputValue, setInputValue] = useState('');
   const [unreadCount, setUnreadCount] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
+  const [sessionId] = useState<string>(() => getOrCreateConsultantSessionId());
   const listRef = useRef<HTMLDivElement>(null);
   const panelVisibleRef = useRef(false);
   panelVisibleRef.current = isOpen && !isClosing;
@@ -61,7 +91,7 @@ export const ConsultantChat = () => {
     setInputValue('');
     setIsTyping(true);
     try {
-      const res = await sendConsultantMessage(text);
+      const res = await sendConsultantMessage(text, sessionId);
 
       const pickTextFromItem = (item: any): string | undefined => {
         if (!item || typeof item !== 'object') return undefined;
