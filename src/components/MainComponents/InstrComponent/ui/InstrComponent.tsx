@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import cls from './InstrComponent.module.css';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
-import { scrollToSection } from '../../../../shared/lib/scrollToSection/scrollToSection';
 import { instrComponentData } from '../model/instrComponentData';
 import Titles from '../../../../shared/ui/Titles/Titles';
 import { LeadCapture } from '../../LeadCapture';

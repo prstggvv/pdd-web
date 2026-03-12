@@ -4,7 +4,6 @@ import { useSwipeable } from 'react-swipeable';
 import cls from './ProblemsCarouselSection.module.css';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
 import Titles from '../../../../shared/ui/Titles/Titles';
-import { scrollToSection } from '../../../../shared/lib/scrollToSection/scrollToSection';
 import { LeadCapture } from '../../LeadCapture';
 import {
   CAROUSEL_SLIDES,

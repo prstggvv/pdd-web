@@ -9,7 +9,7 @@ export interface FooterSocialLink {
 export const footerSocialLinks: FooterSocialLink[] = [
   {
     id: 'telegram',
-    href: 'https://t.me/example',
+    href: 'https://t.me/dd_road',
     label: 'Telegram',
   },
   {

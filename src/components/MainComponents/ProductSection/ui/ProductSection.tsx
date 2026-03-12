@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import cls from './ProductSection.module.css';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
-import { scrollToSection } from '../../../../shared/lib/scrollToSection/scrollToSection';
 import Titles from '../../../../shared/ui/Titles/Titles';
 import { PRODUCT_CARDS, PRODUCT_INTRO } from '../model/productSectionData';
 import { LeadCapture } from '../../LeadCapture';
@@ -9,13 +8,6 @@ import { LeadCapture } from '../../LeadCapture';
 interface IProductSectionProps {
   className?: string;
 }
-
-const handleKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault();
-    (e.currentTarget as HTMLAnchorElement).click();
-  }
-};
 
 const cardsVariants = {
   hidden: {},
