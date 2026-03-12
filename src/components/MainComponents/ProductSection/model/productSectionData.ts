@@ -3,7 +3,7 @@ import SignsImage from '../../../../shared/assets/images/products/signs.jpg';
 import MarkingsImage from '../../../../shared/assets/images/products/markings.jpg';
 import BumpsImage from '../../../../shared/assets/images/products/nerovnost.jpg';
 import FencesImage from '../../../../shared/assets/images/products/plastica.jpg';
-import ParkingImage from '../../../../shared/assets/images/photos/object.jpg';
+import ParkingImage from '../../../../shared/assets/images/products/parkings.jpg';
 
 export interface IProductCard {
   id: string;

@@ -17,8 +17,9 @@ export interface ChatMessage {
 const INITIAL_MESSAGE: ChatMessage = {
   id: '0',
   text: `Добрый день!
-Сергей, ООО «КОДД».
-Мы занимаемся комплексным обустройством дорог и схемами ОДД под ключ — от проектирования и согласования до поставки и монтажа. Чем я могу вам помочь?`,
+Я ИИ консультант от ООО «КОДД».
+Мы занимаемся комплексным обустройством дорог и схемами ОДД под ключ — от проектирования и согласования до поставки и монтажа.
+Чем я могу вам помочь?`,
   from: 'consultant',
 };
 
@@ -198,15 +199,28 @@ export const ConsultantChat = () => {
                 </button>
               </div>
               <div className={cls.list} ref={listRef}>
-                {messages.map((msg) => (
-                  <div
-                    key={msg.id}
-                    className={cls.messageWrap}
-                    data-from={msg.from}
-                  >
-                    <p className={cls.message}>{msg.text}</p>
-                  </div>
-                ))}
+                {messages.map((msg) => {
+                  // Поддерживаем и реальные переводы строк, и последовательность "\n" из API
+                  const normalizedText = msg.text.replace(/\\n/g, '\n');
+                  const parts = normalizedText.split('\n');
+                  return (
+                    <div
+                      key={msg.id}
+                      className={cls.messageWrap}
+                      data-from={msg.from}
+                    >
+                      <p className={cls.message}>
+                        {parts.map((part, index) => (
+                          // eslint-disable-next-line react/no-array-index-key
+                          <span key={index}>
+                            {part}
+                            {index < parts.length - 1 && <br />}
+                          </span>
+                        ))}
+                      </p>
+                    </div>
+                  );
+                })}
                 {isTyping && (
                   <div className={cls.messageWrap} data-from="consultant">
                     <p className={cls.typingMessage}>
