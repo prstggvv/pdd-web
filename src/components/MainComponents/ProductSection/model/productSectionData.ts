@@ -3,6 +3,7 @@ import SignsImage from '../../../../shared/assets/images/products/signs.jpg';
 import MarkingsImage from '../../../../shared/assets/images/products/markings.jpg';
 import BumpsImage from '../../../../shared/assets/images/products/nerovnost.jpg';
 import FencesImage from '../../../../shared/assets/images/products/plastica.jpg';
+import ParkingImage from '../../../../shared/assets/images/photos/object.jpg';
 
 export interface IProductCard {
   id: string;
@@ -17,9 +18,15 @@ export const PRODUCT_INTRO =
 export const PRODUCT_CARDS: IProductCard[] = [
   {
     id: 'signs',
-    title: 'Знаки',
+    title: 'Дорожные Знаки',
     description: 'Дорожные знаки по ГОСТ 52289-2019 и 32945-2014.',
     imageUrl: SignsImage,
+  },
+  {
+    id: 'parkings',
+    title: 'Паркинги',
+    description: 'Паркинги для автомобилей.',
+    imageUrl: ParkingImage,
   },
   {
     id: 'lights',
@@ -29,7 +36,7 @@ export const PRODUCT_CARDS: IProductCard[] = [
   },
   {
     id: 'marking',
-    title: 'Разметка',
+    title: 'Дорожная Разметка',
     description: 'Дорожная разметка краской, термопластиком, холодным пластиком по ГОСТ 51256-2018.',
     imageUrl: MarkingsImage,
   },
@@ -41,7 +48,7 @@ export const PRODUCT_CARDS: IProductCard[] = [
   },
   {
     id: 'fences',
-    title: 'ТСОДД в ассортименте',
+    title: 'Прочие элементы ТСОДД, обустройства',
     description: 'От ограждений металлоконструкции до обустройства дорог.',
     imageUrl: FencesImage,
   },

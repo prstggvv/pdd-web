@@ -14,7 +14,7 @@ export const footerSocialLinks: FooterSocialLink[] = [
   },
   {
     id: 'vk',
-    href: 'https://vk.com',
+    href: 'https://vk.com/id1104330088',
     label: 'VK',
   },
 ];

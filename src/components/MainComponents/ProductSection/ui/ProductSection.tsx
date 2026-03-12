@@ -62,10 +62,10 @@ export const ProductSection = ({ className }: IProductSectionProps) => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.08 }}
         >
-          {PRODUCT_CARDS.map((card, index) => (
+          {PRODUCT_CARDS.map((card) => (
             <motion.article
               key={card.id}
-              className={classNames(cls.card, { [cls.cardWide]: index === 0 }, [])}
+              className={classNames(cls.card, {}, [])}
               tabIndex={0}
               aria-label={card.title}
               variants={cardVariants}

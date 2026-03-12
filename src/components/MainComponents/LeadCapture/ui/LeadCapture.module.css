@@ -28,7 +28,6 @@
   outline-offset: 2px;
 }
 
-/* Вариант для тёмных секций: изначально зелёный фон, при hover — светлый фон и тёмный текст */
 .triggerLightOnDark {
   color: var(--color-bar);
   background: var(--color-metric);
