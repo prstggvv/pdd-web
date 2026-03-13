@@ -40,8 +40,12 @@ export const ContactForm = ({ className, onSuccess }: ContactFormProps) => {
   const [phone, setPhone] = useState(PHONE_PREFIX);
   const [nameError, setNameError] = useState('');
   const [phoneError, setPhoneError] = useState('');
+  const [comment, setComment] = useState('');
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [submitError, setSubmitError] = useState('');
+
+  const isSubmitDisabled =
+    status === 'sending' || !name.trim() || !isPhoneComplete(phone);
 
   const handlePhoneChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const next = formatPhone(e.target.value);
@@ -77,10 +81,11 @@ export const ContactForm = ({ className, onSuccess }: ContactFormProps) => {
       try {
         const digits = getPhoneDigits(phone);
         const phoneForSend = `+7${digits}`;
-        await submitContactForm(trimmedName, phoneForSend);
+        await submitContactForm(trimmedName, phoneForSend, comment.trim() || undefined);
         setStatus('success');
         setName('');
         setPhone(PHONE_PREFIX);
+        setComment('');
         onSuccess?.();
       } catch (err) {
         setStatus('error');
@@ -118,6 +123,18 @@ export const ContactForm = ({ className, onSuccess }: ContactFormProps) => {
             required
           />
         </div>
+        <div className={cls.commentRow}>
+          <label className={cls.commentLabel}>
+            Комментарий
+            <textarea
+              className={cls.commentTextarea}
+              placeholder="Кратко опишите задачу или комментарий к заявке (необязательно)"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              disabled={status === 'sending'}
+            />
+          </label>
+        </div>
         <AnimatePresence mode="wait">
           {(status === 'success' || status === 'error') && (
             <motion.div
@@ -148,7 +165,7 @@ export const ContactForm = ({ className, onSuccess }: ContactFormProps) => {
           <button
             type="submit"
             className={cls.submitBtn}
-            disabled={status === 'sending'}
+            disabled={isSubmitDisabled}
           >
             {status === 'sending' ? 'Отправка…' : 'Отправить заявку'}
           </button>
