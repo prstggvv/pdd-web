@@ -9,7 +9,6 @@ type LeadCaptureVariant = 'default' | 'lightOnDark';
 
 interface ILeadCaptureProps {
   className?: string;
-  /** В тёмных секциях (ProblemsCarousel, InstrComponent): светлый текст, при hover — зелёный фон и чёрный текст */
   variant?: LeadCaptureVariant;
 }
 
