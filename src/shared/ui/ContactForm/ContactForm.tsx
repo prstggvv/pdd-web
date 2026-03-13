@@ -81,7 +81,8 @@ export const ContactForm = ({ className, onSuccess }: ContactFormProps) => {
       try {
         const digits = getPhoneDigits(phone);
         const phoneForSend = `+7${digits}`;
-        await submitContactForm(trimmedName, phoneForSend, comment.trim() || undefined);
+
+        await submitContactForm(trimmedName, phoneForSend, comment);
         setStatus('success');
         setName('');
         setPhone(PHONE_PREFIX);
@@ -92,7 +93,7 @@ export const ContactForm = ({ className, onSuccess }: ContactFormProps) => {
         setSubmitError(err instanceof Error ? err.message : 'Не удалось отправить заявку.');
       }
     },
-    [name, phone, onSuccess]
+    [name, phone, comment, onSuccess]
   );
 
   return (

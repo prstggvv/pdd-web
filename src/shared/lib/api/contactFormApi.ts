@@ -21,7 +21,6 @@ export async function submitContactForm(
       {
         name,
         phone,
-        // Всегда отправляем поле comment, даже если оно пустое
         comment: comment ?? '',
       } as ContactFormPayload
     ),
