@@ -2,7 +2,7 @@
   "name": "igor",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://prstggvv.github.io/spa-salon",
+  "homepage": "https://prstggvv.github.io/pdd-web",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "npm run build && scp -r ./dist/* vgvg@45.151.31.168:/home/vgvg/applications/lehalospa"
+    "deploy": "npm run build && scp -r ./dist/* ivan1@88.218.66.247:/home/ivan1/applications/kodd"
   },
   "dependencies": {
     "framer-motion": "^12.18.1",

@@ -1,37 +1,38 @@
-import type { ChangeEvent, FC } from 'react';
-import { forwardRef } from 'react';
 import cls from './Input.module.css';
 import { classNames } from '../../lib/classNames/classNames';
 
-interface InputProps {
+export interface InputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'className'> {
+  label: string;
+  error?: string;
   className?: string;
-  type: 'text' | 'password' | 'email';
-  placeholder: string;
-  onChange: (evt: ChangeEvent<HTMLInputElement>) => void;
-  value: string;
-  name: string;
-  ref?: any,
 }
 
-export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(({
+export const Input = ({
+  label,
+  error,
+  id,
   className,
-  type,
-  placeholder,
-  onChange,
-  value,
-  name,
-}, ref) => {
+  ...rest
+}: InputProps) => {
+  const inputId = id ?? `input-${Math.random().toString(36).slice(2, 9)}`;
   return (
-    <label className={classNames(cls.label, {}, [className || ''])}>
+    <div className={classNames(cls.root, {}, [className ?? ''])}>
+      <label htmlFor={inputId} className={cls.label}>
+        {label}
+      </label>
       <input
-        className={classNames(cls.input, {}, [])}
-        type={type}
-        placeholder={placeholder}
-        onChange={onChange}
-        value={value}
-        name={name}
-        ref={ref}
+        id={inputId}
+        className={classNames(cls.input, { [cls.error]: Boolean(error) }, [])}
+        aria-invalid={Boolean(error)}
+        aria-describedby={error ? `${inputId}-error` : undefined}
+        {...rest}
       />
-    </label>
+      {error && (
+        <span id={`${inputId}-error`} className={cls.errorText} role="alert">
+          {error}
+        </span>
+      )}
+    </div>
   );
-});
+};

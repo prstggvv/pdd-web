@@ -1,81 +1,10 @@
-export const BOT_ID = import.meta.env.VITE_BOT_ID;
-export const BOT_TOKEN = import.meta.env.VITE_BOT_URL;
+export const YANDEX_MAP_SRC =
+  'https://yandex.ru/map-widget/v1/?from=api-maps&ll=34.124298%2C44.965854&mode=routes&origin=jsapi_2_1_79&rtext=~44.965758%2C34.127123&rtt=auto&ruri=~ymapsbm1%3A%2F%2Fgeo%3Fdata%3DIgoNLYIIQhXw3DNC&utm_source=jsapi&z=14';
 
-export const itemVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.9 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.6,
-    },
-  },
-};
+/** Куда отправлять заявки с формы контактов (n8n webhook) */
+export const CONTACT_FORM_WEBHOOK_URL =
+  (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_CONTACT_FORM_WEBHOOK) ||
+  'https://n8botpars.ru/webhook/form-lead';
 
-export const fadeIn = {
-  hidden: { opacity: 0 },
-  visible: { 
-    opacity: 1,
-    transition: { 
-      duration: 0.6, 
-    } 
-  },
-};
-
-export const staggerChildren = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
-    },
-  },
-};
-
-export const navItem = {
-  hidden: { 
-    opacity: 0,
-    y: -20 
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { 
-      duration: 0.3,
-    }
-  },
-};
-
-export const listVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.13,
-      delayChildren: 0.43,
-    },
-  },
-};
-
-export const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.4,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-export const masterVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-    },
-  },
-}
+/** Email получателя заявок */
+export const CONTACT_FORM_EMAIL = 'vany4golos@yandex.ru';
