@@ -8,6 +8,39 @@ import cls from './ContactForm.module.css';
 
 const PHONE_PREFIX = '+7 ';
 const PHONE_PLACEHOLDER = '+7 (___) ___-__-__';
+const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024; // 10MB
+
+const ALLOWED_FILE_MIME_TYPES = new Set([
+  'application/pdf',
+  'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  'image/jpeg',
+  'image/png',
+  'image/webp',
+  'image/gif',
+  'image/bmp',
+  'image/heic',
+  'image/heif',
+  'text/plain',
+  'application/rtf',
+  'text/rtf',
+]);
+
+const ALLOWED_FILE_EXTENSIONS = new Set([
+  'pdf',
+  'doc',
+  'docx',
+  'jpg',
+  'jpeg',
+  'png',
+  'webp',
+  'gif',
+  'bmp',
+  'heic',
+  'heif',
+  'txt',
+  'rtf',
+]);
 
 function formatPhone(value: string): string {
   const digits = value.replace(/\D/g, '');
@@ -41,6 +74,9 @@ export const ContactForm = ({ className, onSuccess }: ContactFormProps) => {
   const [nameError, setNameError] = useState('');
   const [phoneError, setPhoneError] = useState('');
   const [comment, setComment] = useState('');
+  const [file, setFile] = useState<File | null>(null);
+  const [fileError, setFileError] = useState('');
+  const [isDragOver, setIsDragOver] = useState(false);
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [submitError, setSubmitError] = useState('');
 
@@ -60,11 +96,50 @@ export const ContactForm = ({ className, onSuccess }: ContactFormProps) => {
     }
   }, [phone]);
 
+  const validateAndSetFile = useCallback((nextFile: File | null) => {
+    setFileError('');
+    if (!nextFile) {
+      setFile(null);
+      return;
+    }
+
+    const extension = nextFile.name.includes('.')
+      ? nextFile.name.split('.').pop()?.toLowerCase() ?? ''
+      : '';
+    const mimeAllowed = ALLOWED_FILE_MIME_TYPES.has(nextFile.type);
+    const extensionAllowed = ALLOWED_FILE_EXTENSIONS.has(extension);
+
+    if (!mimeAllowed && !extensionAllowed) {
+      setFile(null);
+      setFileError('Разрешены PDF, DOC, DOCX, изображения, TXT, RTF.');
+      return;
+    }
+
+    if (nextFile.size > MAX_FILE_SIZE_BYTES) {
+      setFile(null);
+      setFileError('Размер файла не должен превышать 10MB.');
+      return;
+    }
+
+    setFile(nextFile);
+  }, []);
+
+  const handleFileChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    validateAndSetFile(e.target.files?.[0] ?? null);
+  }, [validateAndSetFile]);
+
+  const handleFileDrop = useCallback((e: React.DragEvent<HTMLLabelElement>) => {
+    e.preventDefault();
+    setIsDragOver(false);
+    validateAndSetFile(e.dataTransfer.files?.[0] ?? null);
+  }, [validateAndSetFile]);
+
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
       e.preventDefault();
       setNameError('');
       setPhoneError('');
+      setFileError('');
       setSubmitError('');
       let valid = true;
       const trimmedName = name.trim();
@@ -76,24 +151,29 @@ export const ContactForm = ({ className, onSuccess }: ContactFormProps) => {
         setPhoneError('Введите номер в формате +7 (xxx) xxx-xx-xx');
         valid = false;
       }
+      if (file && file.size > MAX_FILE_SIZE_BYTES) {
+        setFileError('Размер файла не должен превышать 10MB.');
+        valid = false;
+      }
       if (!valid) return;
       setStatus('sending');
       try {
         const digits = getPhoneDigits(phone);
         const phoneForSend = `+7${digits}`;
 
-        await submitContactForm(trimmedName, phoneForSend, comment);
+        await submitContactForm(trimmedName, phoneForSend, comment, file);
         setStatus('success');
         setName('');
         setPhone(PHONE_PREFIX);
         setComment('');
+        setFile(null);
         onSuccess?.();
       } catch (err) {
         setStatus('error');
         setSubmitError(err instanceof Error ? err.message : 'Не удалось отправить заявку.');
       }
     },
-    [name, phone, comment, onSuccess]
+    [name, phone, comment, file, onSuccess]
   );
 
   return (
@@ -124,7 +204,7 @@ export const ContactForm = ({ className, onSuccess }: ContactFormProps) => {
             required
           />
         </div>
-        <div className={cls.commentRow}>
+        <div className={cls.extraRow}>
           <label className={cls.commentLabel}>
             Комментарий
             <textarea
@@ -135,6 +215,45 @@ export const ContactForm = ({ className, onSuccess }: ContactFormProps) => {
               disabled={status === 'sending'}
             />
           </label>
+          <div className={cls.fileField}>
+            <p className={cls.fileTitle}>Файл (необязательно)</p>
+            <div className={cls.fileBlock}>
+            <input
+              id="contact-form-file"
+              type="file"
+              className={cls.fileInputHidden}
+              accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp,.gif,.bmp,.heic,.heif,.txt,.rtf"
+              onChange={handleFileChange}
+              disabled={status === 'sending'}
+            />
+            <label
+              htmlFor="contact-form-file"
+              className={classNames(cls.fileDropzone, { [cls.fileDropzoneActive]: isDragOver }, [])}
+              onDragOver={(e) => {
+                e.preventDefault();
+                if (!isDragOver) setIsDragOver(true);
+              }}
+              onDragLeave={() => setIsDragOver(false)}
+              onDrop={handleFileDrop}
+            >
+              {file ? 'Файл выбран. Нажмите, чтобы заменить, или перетащите другой.' : 'Нажмите для выбора файла или перетащите его сюда.'}
+            </label>
+            {file && (
+              <input
+                type="button"
+                className={cls.fileClearBtn}
+                value="Очистить файл"
+                onClick={() => {
+                  setFile(null);
+                  setFileError('');
+                }}
+                disabled={status === 'sending'}
+              />
+            )}
+            {file && <p className={cls.fileName}>{file.name}</p>}
+            {fileError && <p className={cls.fileError}>{fileError}</p>}
+            </div>
+          </div>
         </div>
         <AnimatePresence mode="wait">
           {(status === 'success' || status === 'error') && (
